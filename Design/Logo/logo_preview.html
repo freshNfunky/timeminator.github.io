@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Timeminator Logo</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#ffffff; --ink:#1e293b; --muted:#64748b;
+    --line:#e2e8f0; --brand:#2563eb; --brand-d:#1d4ed8; --red:#dc2626;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:'Inter',ui-sans-serif,system-ui,sans-serif; color:var(--ink); background:#f8fafc; line-height:1.5}
+  header{background:#000; color:#fff; padding:14px 22px; display:flex; align-items:center; gap:12px; border-bottom:3px solid var(--red)}
+  header h1{font-size:16px; margin:0; font-weight:700; letter-spacing:.3px}
+  header .tag{font-size:11px; color:#94a3b8; margin-left:auto; letter-spacing:2px}
+  main{max-width:1200px; margin:0 auto; padding:22px 16px 56px}
+  h2{font-size:12px; text-transform:uppercase; letter-spacing:2.5px; color:var(--muted); margin:28px 0 10px; font-weight:700}
+  .row{display:grid; gap:16px}
+  .row.stack{grid-template-columns:1fr}
+  .row.duo{grid-template-columns:1fr 1fr}
+  .row.trio{grid-template-columns:repeat(3,1fr)}
+  @media (max-width:820px){.row.duo,.row.trio{grid-template-columns:1fr}}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px; display:flex; flex-direction:column; box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  .card.black{background:#000; color:#e2e8f0; border-color:#000}
+  .card.dark{background:var(--bg); color:#e2e8f0; border-color:#1e293b}
+  .card.chrome{background:radial-gradient(circle at 30% 20%,#334155,#0f172a 70%); color:#e2e8f0; border-color:#000}
+  .card .label{font-size:11px; text-transform:uppercase; letter-spacing:2px; color:var(--muted); margin-bottom:12px}
+  .card.black .label,.card.dark .label,.card.chrome .label{color:#94a3b8}
+  .stage{flex:1; display:flex; align-items:center; justify-content:center; min-height:180px; padding:8px}
+  .stage svg{width:100%; height:auto; max-width:100%}
+  .stage.small svg{max-width:340px}
+  .stage.tiny svg{max-width:180px}
+  .caption{font-size:12px; color:var(--muted); margin-top:14px}
+  .card.black .caption,.card.dark .caption,.card.chrome .caption{color:#94a3b8}
+  .callout{padding:12px 14px; background:#fef2f2; border-left:3px solid var(--red); border-radius:8px; font-size:13px; color:#7f1d1d}
+  .duo-lockup{display:flex; align-items:center; gap:20px}
+  .duo-lockup .mascot{width:120px; height:auto; flex-shrink:0}
+  .duo-lockup .word{flex:1}
+  .hidden{position:absolute; width:0; height:0; overflow:hidden}
+  .splash{background:radial-gradient(ellipse at center,#1e293b,#000 70%); border-radius:16px; padding:40px 20px; text-align:center; color:#e2e8f0}
+  .splash svg{max-width:640px; width:100%; height:auto}
+  .splash .go{margin-top:24px; display:inline-block; background:var(--red); color:#fff; padding:12px 32px; border-radius:8px; font-weight:700; letter-spacing:3px; font-size:13px; text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<!-- shared SVG defs and symbol -->
+<svg class="hidden" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e2e8f0"/><stop offset=".08" stop-color="#f8fafc"/>
+      <stop offset=".32" stop-color="#cbd5e1"/><stop offset=".48" stop-color="#334155"/>
+      <stop offset=".52" stop-color="#1e293b"/><stop offset=".68" stop-color="#64748b"/>
+      <stop offset=".85" stop-color="#f1f5f9"/><stop offset="1" stop-color="#334155"/>
+    </linearGradient>
+    <radialGradient id="redHalo" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ef4444" stop-opacity=".95"/>
+      <stop offset=".35" stop-color="#dc2626" stop-opacity=".7"/>
+      <stop offset=".7" stop-color="#7f1d1d" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#7f1d1d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="redCore" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fff" stop-opacity=".85"/>
+      <stop offset=".3" stop-color="#fecaca" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#dc2626" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softBlur" x="-20%" y="-100%" width="140%" height="300%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <filter id="tightBlur" x="-20%" y="-100%" width="140%" height="300%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <clipPath id="wordClip">
+      <text x="700" y="330" text-anchor="middle"
+            font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif"
+            font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed">TIMEMINATOR</text>
+    </clipPath>
+
+    <symbol id="fsMark" viewBox="0 0 354.04 34.74" fill="currentColor">
+      <g>
+        <path d="M101.2,8.91H91.04v7.34h8.06v2.78h-8.06v9.7h-2.98V6.16h13.14C101.2,6.16,101.2,8.91,101.2,8.91z"/>
+        <path d="M117.88,22.3h-12.45c0.43,2.72,2.39,4.13,5.01,4.13c1.87,0,3.57-0.85,4.46-2.39l2.46,0.98c-1.31,2.65-4.06,4.1-7.01,4.1c-4.36,0-7.86-3.24-7.86-8.09s3.51-7.99,7.86-7.99s7.6,3.15,7.6,7.99c0,0.43-0.03,0.85-0.07,1.28l0,0V22.3z M115.09,19.85c-0.36-2.62-2.23-4.13-4.75-4.13s-4.42,1.38-4.88,4.13H115.09z"/>
+        <path d="M121.84,28.72V5.11h2.85v23.62h-2.85V28.72z"/>
+        <path d="M129.05,7.8c0-1.08,0.92-1.9,2-1.9s2.03,0.82,2.03,1.9s-0.92,1.9-2.03,1.9S129.05,8.88,129.05,7.8z M129.64,28.72v-15.3h2.85v15.3H129.64z"/>
+        <path d="M150.71,28.72h-3.41l-4.32-6l-4.36,6h-3.41l6.06-8.42l-4.95-6.88h3.44l3.21,4.55l3.21-4.55h3.47l-4.98,6.91L150.71,28.72L150.71,28.72L150.71,28.72z"/>
+        <path d="M152.67,22.34h2.95c0.1,2,2,4.03,5.01,4.03s4.55-1.9,4.55-3.9c0-2.2-2-3.18-3.9-3.67l-2.92-0.72c-4.78-1.15-5.54-3.96-5.54-5.8c0-3.9,3.51-6.52,7.44-6.52s7.14,2.52,7.14,6.55h-2.95c0-2.26-1.87-3.8-4.29-3.8c-2.26,0-4.36,1.51-4.36,3.73c0,0.79,0.26,2.36,3.28,3.14l2.95,0.79c3.83,1.01,6.13,2.98,6.13,6.19c0,3.5-2.85,6.75-7.53,6.75s-7.93-3.28-7.96-6.78l0,0L152.67,22.34z"/>
+        <path d="M171.05,21.05c0-4.85,3.83-8.03,8.22-8.03c2.39,0,4.49,0.95,5.83,2.42l-1.8,1.87c-0.95-0.98-2.33-1.61-3.93-1.61c-3.01,0-5.44,2.2-5.44,5.34s2.42,5.37,5.44,5.37c1.6,0,2.98-0.62,3.93-1.61l1.8,1.87c-1.34,1.51-3.44,2.42-5.83,2.42c-4.39,0-8.22-3.21-8.22-8.06C171.05,21.03,171.05,21.05,171.05,21.05z"/>
+        <path d="M202.8,19.88v8.85h-2.85v-8.68c0-2.56-1.57-4.19-3.7-4.19s-4.69,1.28-4.69,4.59v8.29h-2.85V5.11h2.85v10.65c0.92-1.87,3.41-2.72,5.08-2.72C200.44,13.04,202.83,15.6,202.8,19.88L202.8,19.88L202.8,19.88z"/>
+        <path d="M219.61,13.43h2.85v15.3h-2.85v-2.72c-1.02,1.83-3.15,3.11-5.6,3.11c-4,0-7.5-3.38-7.5-8.06s3.31-8.03,7.63-8.03c2.29,0,4.46,0.98,5.47,2.79C219.61,15.82,219.61,13.43,219.61,13.43z M219.61,21.05c0-3.14-2.65-5.34-5.21-5.34c-2.78,0-5.01,2.46-5.01,5.34s2.23,5.37,5.05,5.37S219.62,24.16,219.61,21.05L219.61,21.05L219.61,21.05z"/>
+        <path d="M227.44,28.72V5.11h2.85v23.62h-2.85V28.72z"/>
+        <path d="M235.24,28.72V5.11h2.85v23.62h-2.85V28.72z"/>
+        <path d="M257.42,22.3h-12.45c0.43,2.72,2.39,4.13,5.01,4.13c1.87,0,3.57-0.85,4.46-2.39l2.46,0.98c-1.31,2.65-4.06,4.1-7.01,4.1c-4.36,0-7.86-3.24-7.86-8.09s3.5-7.99,7.86-7.99s7.6,3.15,7.6,7.99c0,0.43-0.03,0.85-0.07,1.28l0,0V22.3z M254.63,19.85c-0.36-2.62-2.23-4.13-4.75-4.13s-4.42,1.38-4.88,4.13H254.63z"/>
+        <path d="M271.21,13.63l-0.46,2.69c-0.82-0.39-1.64-0.52-2.23-0.52c-3.05,0-4.26,3.31-4.26,7.34v5.6h-2.88v-15.3h2.88v3.47c0.79-2.69,2.26-3.87,4.29-3.87c1.08,0,2.2,0.29,2.65,0.59H271.21z"/>
+      </g>
+      <g>
+        <path d="M272.85,17.39c0-6.36,5.11-11.63,11.47-11.63c3.96,0,7.44,2,9.5,5.01l-4,2.79c-1.18-1.83-2.92-2.95-5.27-2.95c-3.8,0-6.52,3.05-6.52,6.78s2.62,6.88,6.49,6.88c2.39,0,4.13-1.11,5.31-2.95l4,2.79c-2.06,3.01-5.54,5.01-9.5,5.01c-6.36,0-11.47-5.31-11.47-11.73C272.86,17.39,272.85,17.39,272.85,17.39z"/>
+        <path d="M295.62,17.43c0-6.39,5.08-11.66,11.53-11.66s11.5,5.27,11.5,11.66s-5.14,11.7-11.5,11.7S295.62,23.82,295.62,17.43z M313.48,17.43c0-3.77-2.59-6.81-6.36-6.81s-6.32,3.05-6.32,6.81s2.52,6.85,6.32,6.85S313.48,21.2,313.48,17.43z"/>
+        <path d="M348.57,28.72h-5.27l-1.47-12.84l-4.91,10.25h-3.93l-4.91-10.22l-1.51,12.81h-5.27l2.79-22.57h4.29l6.58,14.12l6.49-14.12h4.39l2.75,22.57H348.57L348.57,28.72z"/>
+      </g>
+      <g>
+        <path d="M72.66,6.89l9.47,16.4c1.4,2.42-0.35,5.44-3.14,5.44H60.06c-2.79,0-4.54-3.02-3.14-5.44l9.46-16.4C67.78,4.47,71.26,4.47,72.66,6.89z"/>
+        <path d="M35.86,5.11h14.52c2.51,0,4.55,2.04,4.55,4.55v14.52c0,2.51-2.04,4.55-4.55,4.55H35.86c-2.51,0-4.55-2.04-4.55-4.55V9.66C31.31,7.14,33.35,5.11,35.86,5.11z"/>
+        <circle cx="17.99" cy="16.92" r="11.81"/>
+      </g>
+    </symbol>
+
+    <symbol id="logoFull" viewBox="0 0 1400 520">
+      <ellipse cx="700" cy="270" rx="640" ry="110" fill="url(#redHalo)" filter="url(#softBlur)"/>
+      <ellipse cx="700" cy="270" rx="360" ry="50" fill="url(#redCore)" filter="url(#tightBlur)"/>
+      <g stroke="#dc2626" stroke-width="1.5" opacity=".35">
+        <line x1="700" y1="270" x2="40" y2="120"/>
+        <line x1="700" y1="270" x2="60" y2="200"/>
+        <line x1="700" y1="270" x2="40" y2="340"/>
+        <line x1="700" y1="270" x2="60" y2="430"/>
+        <line x1="700" y1="270" x2="1360" y2="120"/>
+        <line x1="700" y1="270" x2="1340" y2="200"/>
+        <line x1="700" y1="270" x2="1360" y2="340"/>
+        <line x1="700" y1="270" x2="1340" y2="430"/>
+      </g>
+      <text x="700" y="330" text-anchor="middle"
+            font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif"
+            font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed"
+            stroke="#0f172a" stroke-width="10" fill="none" style="paint-order:stroke;">TIMEMINATOR</text>
+      <text x="700" y="330" text-anchor="middle"
+            font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif"
+            font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed"
+            fill="url(#chrome)">TIMEMINATOR</text>
+      <g clip-path="url(#wordClip)">
+        <rect x="60" y="215" width="1280" height="9" fill="#0f172a" opacity=".85"/>
+        <rect x="60" y="310" width="1280" height="4" fill="#f8fafc" opacity=".35"/>
+      </g>
+      <g transform="translate(700,420)">
+        <text x="-345" y="8" text-anchor="start"
+              font-family="'Inter','Helvetica Neue',Arial,sans-serif"
+              font-size="24" font-weight="500" letter-spacing="6" fill="#94a3b8">created by</text>
+        <use href="#fsMark" x="-105" y="-22" width="460" height="45" fill="#e2e8f0"/>
+      </g>
+    </symbol>
+
+    <symbol id="logoNoSub" viewBox="0 0 1400 400">
+      <ellipse cx="700" cy="240" rx="640" ry="110" fill="url(#redHalo)" filter="url(#softBlur)"/>
+      <ellipse cx="700" cy="240" rx="360" ry="50" fill="url(#redCore)" filter="url(#tightBlur)"/>
+      <text x="700" y="300" text-anchor="middle"
+            font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif"
+            font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed"
+            stroke="#0f172a" stroke-width="10" fill="none" style="paint-order:stroke;">TIMEMINATOR</text>
+      <text x="700" y="300" text-anchor="middle"
+            font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif"
+            font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed"
+            fill="url(#chrome)">TIMEMINATOR</text>
+      <g>
+        <rect x="60" y="185" width="1280" height="9" fill="#0f172a" opacity=".85"
+              style="clip-path:url(#wordClip);"/>
+      </g>
+    </symbol>
+
+    <symbol id="logoMono" viewBox="0 0 1400 340">
+      <text x="700" y="230" text-anchor="middle"
+            font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif"
+            font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed"
+            fill="currentColor">TIMEMINATOR</text>
+      <rect x="60" y="118" width="1280" height="9" fill="currentColor" opacity=".9"/>
+    </symbol>
+
+    <symbol id="mascotHead" viewBox="112 52 256 256">
+      <g transform="translate(240,180)">
+        <circle r="128" fill="url(#chrome)"/>
+        <circle r="120" fill="#0f172a"/>
+        <circle r="118" fill="#e2e8f0"/>
+        <g fill="#0f172a">
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(0)"/>
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(30)"/>
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(60)"/>
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(90)"/>
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(120)"/>
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(150)"/>
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(180)"/>
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(210)"/>
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(240)"/>
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(270)"/>
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(300)"/>
+          <rect x="-3" y="-115" width="6" height="16" transform="rotate(330)"/>
+        </g>
+        <g font-family="'Inter',system-ui,sans-serif" font-weight="900" font-size="22" fill="#0f172a" text-anchor="middle">
+          <text x="0" y="-72">12</text><text x="82" y="8">3</text>
+          <text x="0" y="88">6</text><text x="-82" y="8">9</text>
+        </g>
+        <g>
+          <g transform="rotate(-60)">
+            <rect x="-4" y="-70" width="8" height="80" rx="2" fill="#0f172a"/>
+          </g>
+          <g transform="rotate(60)">
+            <rect x="-3" y="-95" width="6" height="105" rx="2" fill="#0f172a"/>
+          </g>
+          <g transform="rotate(120)">
+            <rect x="-1.2" y="-100" width="2.4" height="115" fill="#dc2626"/>
+          </g>
+          <circle r="6" fill="#0f172a"/>
+          <circle r="2.5" fill="#dc2626"/>
+        </g>
+        <g>
+          <path d="M-108 -10 Q-104 -34 -60 -34 L-14 -34 Q0 -32 0 -22 Q0 -32 14 -34 L60 -34 Q104 -34 108 -10 L104 6 Q98 30 60 32 L14 32 Q0 28 0 18 Q0 28 -14 32 L-60 32 Q-98 30 -104 6 Z"
+                fill="#050505" stroke="#0b1220" stroke-width="2"/>
+          <g filter="url(#tightBlur)">
+            <ellipse cx="-58" cy="-2" rx="34" ry="20" fill="#dc2626"/>
+            <ellipse cx="58" cy="-2" rx="34" ry="20" fill="#dc2626"/>
+          </g>
+          <ellipse cx="-58" cy="-2" rx="24" ry="12" fill="#ef4444"/>
+          <ellipse cx="58" cy="-2" rx="24" ry="12" fill="#ef4444"/>
+        </g>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <span style="color:var(--red); font-weight:900; letter-spacing:2px">◤</span>
+  <h1>Timeminator Logo</h1>
+  <span class="tag">WORDMARK · V1</span>
+</header>
+
+<main>
+  <div class="callout">
+    Wordmark angelehnt an das Terminator Filmlogo. Chrom Verlauf mit dunklem Umriss, dunkler Scan Line quer durch die Buchstaben, rotes Backlight Halo mit radialen Strahlen, Subtitle im Cyberdyne Stil. Primärer Einsatzhintergrund ist dunkel bis schwarz, funktioniert aber auch auf hell wenn das Halo runtergezogen wird.
+  </div>
+
+  <h2>Splash</h2>
+  <div class="row stack">
+    <div class="splash">
+      <svg viewBox="0 0 1400 520"><use href="#logoFull"/></svg>
+      <div class="go">Enter · Punch In</div>
+    </div>
+  </div>
+
+  <h2>Backgrounds</h2>
+  <div class="row trio">
+    <section class="card black">
+      <span class="label">Black · Primary</span>
+      <div class="stage"><svg viewBox="0 0 1400 520"><use href="#logoFull"/></svg></div>
+      <p class="caption">Primäres Einsatzumfeld, volle Wirkung des Halos.</p>
+    </section>
+    <section class="card chrome">
+      <span class="label">Dark Chrome</span>
+      <div class="stage"><svg viewBox="0 0 1400 520"><use href="#logoFull"/></svg></div>
+      <p class="caption">Auf grafitgrauem Verlauf, für Landing Pages.</p>
+    </section>
+    <section class="card">
+      <span class="label">Light · Reduziert</span>
+      <div class="stage"><svg viewBox="0 0 1400 400"><use href="#logoNoSub"/></svg></div>
+      <p class="caption">Ohne Subtitle, funktioniert auf weißem Untergrund.</p>
+    </section>
+  </div>
+
+  <h2>Lockups mit Maskottchen</h2>
+  <div class="row duo">
+    <section class="card black">
+      <span class="label">Horizontal Lockup</span>
+      <div class="stage">
+        <div class="duo-lockup">
+          <svg class="mascot" viewBox="112 52 256 256"><use href="#mascotHead"/></svg>
+          <svg class="word" viewBox="0 0 1400 400"><use href="#logoNoSub"/></svg>
+        </div>
+      </div>
+      <p class="caption">Kopf links, Wordmark rechts. Für Topbar und Header.</p>
+    </section>
+    <section class="card dark">
+      <span class="label">Stacked Lockup</span>
+      <div class="stage" style="flex-direction:column; gap:12px">
+        <svg style="width:120px; height:auto" viewBox="112 52 256 256"><use href="#mascotHead"/></svg>
+        <svg style="width:100%; max-width:420px" viewBox="0 0 1400 400"><use href="#logoNoSub"/></svg>
+      </div>
+      <p class="caption">Kopf über Wordmark. Für Login und Splash.</p>
+    </section>
+  </div>
+
+  <h2>Sizes</h2>
+  <div class="row trio">
+    <section class="card black">
+      <span class="label">Large 640</span>
+      <div class="stage"><svg viewBox="0 0 1400 520" style="max-width:640px"><use href="#logoFull"/></svg></div>
+    </section>
+    <section class="card black">
+      <span class="label">Medium 340</span>
+      <div class="stage small"><svg viewBox="0 0 1400 400"><use href="#logoNoSub"/></svg></div>
+    </section>
+    <section class="card black">
+      <span class="label">Small 180</span>
+      <div class="stage tiny"><svg viewBox="0 0 1400 400"><use href="#logoNoSub"/></svg></div>
+    </section>
+  </div>
+
+  <h2>FelixSchallerCOM Mark</h2>
+  <div class="row duo">
+    <section class="card">
+      <span class="label">Black on White</span>
+      <div class="stage" style="color:#0f172a"><svg viewBox="0 0 354.04 34.74" style="max-width:640px"><use href="#fsMark"/></svg></div>
+      <p class="caption">Standalone Mark, wie im Original.</p>
+    </section>
+    <section class="card black">
+      <span class="label">White on Black</span>
+      <div class="stage" style="color:#e2e8f0"><svg viewBox="0 0 354.04 34.74" style="max-width:640px"><use href="#fsMark"/></svg></div>
+      <p class="caption">Invertiert für dunkle Untergründe.</p>
+    </section>
+  </div>
+
+  <h2>Mono Fallback</h2>
+  <div class="row trio">
+    <section class="card black">
+      <span class="label">White on Black</span>
+      <div class="stage" style="color:#fff"><svg viewBox="0 0 1400 340"><use href="#logoMono"/></svg></div>
+    </section>
+    <section class="card">
+      <span class="label">Black on White</span>
+      <div class="stage" style="color:#0f172a"><svg viewBox="0 0 1400 340"><use href="#logoMono"/></svg></div>
+    </section>
+    <section class="card" style="background:var(--brand); border-color:var(--brand)">
+      <span class="label" style="color:#dbeafe">White on Brand</span>
+      <div class="stage" style="color:#fff"><svg viewBox="0 0 1400 340"><use href="#logoMono"/></svg></div>
+    </section>
+  </div>
+</main>
+</body>
+</html>
