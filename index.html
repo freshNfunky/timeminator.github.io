@@ -71,7 +71,7 @@
     }
 
     .logo {
-      height: 60px;
+      height: 56px;
       display: flex;
       align-items: center;
     }
@@ -80,7 +80,7 @@
     .logo svg {
       height: 100%;
       width: auto;
-      max-width: 280px;
+      max-width: 360px;
     }
 
     .nav-links {
@@ -541,9 +541,32 @@
 
     .why-section {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      grid-template-columns: 1fr 1fr 0.8fr;
+      gap: 48px;
       align-items: center;
+    }
+
+    .why-figure {
+      align-self: stretch;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 420px;
+    }
+
+    .why-figure img {
+      max-height: 500px;
+      width: auto;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.5));
+    }
+
+    @media (max-width: 980px) {
+      .why-section {
+        grid-template-columns: 1fr 1fr;
+      }
+      .why-figure {
+        display: none;
+      }
     }
 
     @media (max-width: 768px) {
@@ -555,6 +578,57 @@
 
     .why-column h3 {
       margin-top: 0;
+    }
+
+    .cta-band {
+      margin-top: 64px;
+      display: grid;
+      grid-template-columns: 0.7fr 1fr;
+      gap: 40px;
+      align-items: center;
+      background: linear-gradient(120deg, rgba(255,255,255,0.05), rgba(37,99,235,0.10));
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      padding: 32px 48px;
+    }
+
+    .cta-band-figure {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .cta-band-figure img {
+      max-height: 340px;
+      width: auto;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+    }
+
+    .cta-band-text h3 {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .cta-band-text p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 24px;
+      max-width: 440px;
+    }
+
+    @media (max-width: 760px) {
+      .cta-band {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 28px 24px;
+      }
+      .cta-band-figure img {
+        max-height: 260px;
+      }
+      .cta-band-text p {
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
 
     footer {
@@ -649,7 +723,7 @@
   <header>
     <div class="container">
       <div class="logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" style="height: 32px; width: auto;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="80 140 1240 210">
           <defs>
             <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#e2e8f0"/>
@@ -662,7 +736,7 @@
               <stop offset="1" stop-color="#334155"/>
             </linearGradient>
           </defs>
-          <text x="700" y="330" text-anchor="middle" font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif" font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed" fill="url(#chrome)">TIMEMINATOR</text>
+          <text x="700" y="330" text-anchor="middle" textLength="1240" lengthAdjust="spacingAndGlyphs" font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif" font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed" fill="url(#chrome)">TIMEMINATOR</text>
         </svg>
       </div>
       <nav>
@@ -791,6 +865,9 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="why-figure">
+            <img src="char_male03.png" alt="Timeminator cyborg agent" loading="lazy">
           </div>
         </div>
       </div>
@@ -946,9 +1023,15 @@
           </div>
         </div>
 
-        <div style="text-align: center; margin-top: 60px;">
-          <p style="font-size: 16px; margin-bottom: 24px; color: rgba(255, 255, 255, 0.9);">Ready to deploy?</p>
-          <a href="https://github.com/freshnfunky/Timeminator" target="_blank" class="cta-button">View on GitHub</a>
+        <div class="cta-band">
+          <div class="cta-band-figure">
+            <img src="char_female01.png" alt="Timeminator cyborg agent" loading="lazy">
+          </div>
+          <div class="cta-band-text">
+            <h3>Deploy in minutes. Own your data forever.</h3>
+            <p>Grab the latest release, run the web installer, and put your whole team on the clock. No SaaS bills, no lock-in.</p>
+            <a href="https://github.com/freshnfunky/Timeminator" target="_blank" class="cta-button">View on GitHub</a>
+          </div>
         </div>
       </div>
     </section>
