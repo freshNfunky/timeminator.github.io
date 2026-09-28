@@ -143,17 +143,38 @@
     .hero-text {
       width: min(100%, 600px);
       text-align: left;
-      padding: 36px 40px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(203, 213, 225, 0.20) 0%, rgba(30, 41, 59, 0.52) 40%, rgba(8, 12, 16, 0.64) 100%);
-      border: 1px solid rgba(203, 213, 225, 0.32);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 40px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.28);
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
     }
 
-    .hero-text .cta-button {
-      margin-top: 8px;
+    .hero-text h1,
+    .hero-text p {
+      text-shadow: 0 2px 22px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.75);
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .cta-secondary {
+      display: inline-block;
+      padding: 12px 32px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.55);
+      cursor: pointer;
+      transition: all 200ms ease;
+    }
+
+    .cta-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: #ffffff;
+      color: #ffffff;
+      transform: translateY(-2px);
     }
 
     @media (max-width: 900px) {
@@ -171,6 +192,10 @@
 
       .hero-text {
         text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
       }
     }
 
@@ -822,7 +847,10 @@
         <div class="hero-text">
           <h1>Time Tracking That Doesn't Complicate, It Clarifies</h1>
           <p>Self-hosted, project-based time tracker built for SMBs. No bloat, no SaaS lock-in: live timer, custom categories, budget-vs-actual analytics, and team sentiment tracking — all on your server.</p>
-          <button class="cta-button" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Explore Features</button>
+          <div class="hero-buttons">
+            <button class="cta-button" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Explore Features</button>
+            <a class="cta-secondary" href="https://github.com/freshNfunky/Timeminator-Community/releases" target="_blank" rel="noopener">Download</a>
+          </div>
         </div>
       </div>
       <div class="hero-credit">
