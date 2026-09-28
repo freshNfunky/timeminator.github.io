@@ -1,147 +1,586 @@
-<title>Timeminator – Self-Hosted Time Tracking for SMBs</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  :root {
-    --slate-50: #f8fafc;
-    --slate-100: #f1f5f9;
-    --slate-200: #e2e8f0;
-    --slate-600: #475569;
-    --slate-900: #0f172a;
-    --blue-600: #2563eb;
-    --blue-700: #1d4ed8;
-    --green: #10b981;
-    --red: #ef4444;
-    --amber: #f59e0b;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeminator – Self-Hosted Time Tracking for SMBs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+  <style>
+    :root {
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-600: #475569;
+      --slate-900: #0f172a;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      --green: #10b981;
+      --red: #ef4444;
+      --amber: #f59e0b;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--slate-50); color: var(--slate-900); line-height: 1.6; padding: 0 16px; }
-  a { color: var(--blue-600); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--slate-50);
+      color: var(--slate-900);
+      line-height: 1.6;
+      padding: 0 16px;
+    }
+    a { color: var(--blue-600); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-  header { padding: 24px 0; border-bottom: 1px solid var(--slate-200); margin-bottom: 48px; max-width: 1200px; margin-left: auto; margin-right: auto; }
-  .logo { display: inline-flex; align-items: center; }
-  .logo img { height: 40px; width: auto; }
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--slate-200);
+      margin-bottom: 48px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo { display: inline-flex; align-items: center; height: 40px; }
+    .logo img { height: 100%; width: auto; }
+    .nav-link { font-size: 14px; color: var(--slate-600); margin-left: 32px; }
+    .nav-link:hover { color: var(--slate-900); }
 
-  .hero { max-width: 1200px; margin: 0 auto 64px; text-align: center; }
-  h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
-  h2 { font-size: 28px; font-weight: 700; margin-bottom: 24px; margin-top: 56px; }
-  .hero p { font-size: 18px; color: var(--slate-600); margin-bottom: 32px; max-width: 640px; margin-left: auto; margin-right: auto; }
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto 96px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-content { }
+    h1 {
+      font-size: clamp(40px, 7vw, 56px);
+      font-weight: 900;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--slate-600);
+      margin-bottom: 32px;
+      line-height: 1.7;
+      max-width: 500px;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: all 200ms ease;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    }
+    .hero-mascot { max-width: 100%; height: auto; }
 
-  .cta-button { display: inline-block; padding: 12px 32px; background: var(--blue-600); color: white; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; transition: background 200ms ease; }
-  .cta-button:hover { background: var(--blue-700); }
+    .strip {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .strip-cell {
+      padding: 24px;
+      border-radius: 12px;
+      background: white;
+      border: 1px solid var(--slate-200);
+      transition: all 200ms ease;
+    }
+    .strip-cell:hover {
+      border-color: var(--blue-600);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.1);
+    }
+    .strip-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--blue-600);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .strip-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--slate-900);
+    }
 
-  .strip { max-width: 1200px; margin: 0 auto 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-  .strip-cell { padding: 16px; border-radius: 6px; background: white; border: 1px solid var(--slate-200); }
-  .strip-label { font-size: 11px; font-weight: 600; color: var(--blue-600); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-  .strip-value { font-size: 14px; font-weight: 500; }
+    h2 {
+      font-size: 36px;
+      font-weight: 900;
+      margin-bottom: 24px;
+      margin-top: 80px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-  .features { max-width: 1200px; margin: 0 auto 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-  .feature { padding: 28px; border-radius: 8px; background: white; border: 1px solid var(--slate-200); }
-  .feature h3 { font-size: 18px; font-weight: 600; margin-bottom: 12px; }
-  .feature p { font-size: 14px; color: var(--slate-600); line-height: 1.6; }
-  .icon { font-size: 32px; margin-bottom: 16px; }
+    .features {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+    .feature {
+      padding: 32px;
+      border-radius: 12px;
+      background: white;
+      border: 1px solid var(--slate-200);
+      transition: all 200ms ease;
+    }
+    .feature:hover {
+      border-color: var(--blue-600);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
+      transform: translateY(-4px);
+    }
+    .feature-icon { font-size: 48px; margin-bottom: 16px; }
+    .feature h3 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--slate-900);
+    }
+    .feature p {
+      font-size: 15px;
+      color: var(--slate-600);
+      line-height: 1.7;
+    }
+    .feature strong { color: var(--slate-900); font-weight: 700; }
 
-  .section { max-width: 1200px; margin: 0 auto 64px; }
-  .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-  .feature-list { display: flex; flex-direction: column; gap: 20px; }
-  .feature-item { display: flex; gap: 12px; align-items: flex-start; }
-  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue-600); margin-top: 6px; flex-shrink: 0; }
-  .dot.teal { background: #12a29c; }
-  .feature-item-text { font-size: 14px; line-height: 1.6; color: var(--slate-600); }
-  .feature-item strong { color: var(--slate-900); font-weight: 600; }
+    .showcase {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border-radius: 16px;
+      padding: 60px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .showcase-content h3 {
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 20px;
+      color: var(--slate-900);
+    }
+    .showcase-images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .showcase-images img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--slate-200);
+    }
 
-  .comparison { max-width: 1200px; margin: 0 auto 64px; }
-  .table-wrapper { overflow-x: auto; border-radius: 8px; border: 1px solid var(--slate-200); }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; background: white; }
-  th { background: var(--slate-100); padding: 12px 16px; text-align: left; font-weight: 600; color: var(--blue-600); text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; border-bottom: 2px solid var(--slate-200); }
-  td { padding: 12px 16px; border-bottom: 1px solid var(--slate-200); }
-  tr:last-child td { border-bottom: 0; }
-  td:first-child { font-weight: 500; }
-  .check { color: var(--green); font-weight: 600; }
-  .x { color: var(--red); font-weight: 600; }
-  .partial { color: var(--amber); font-weight: 600; }
+    .section {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 48px;
+    }
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .feature-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue-600);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .dot.teal { background: #12a29c; }
+    .feature-item-text {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--slate-600);
+    }
+    .feature-item strong {
+      color: var(--slate-900);
+      font-weight: 700;
+    }
 
-  .use-cases { max-width: 1200px; margin: 0 auto 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-  .use-case { padding: 20px; border-radius: 8px; background: white; border: 1px solid var(--slate-200); text-align: center; }
-  .use-case-icon { font-size: 32px; margin-bottom: 12px; }
-  .use-case-name { font-weight: 600; font-size: 15px; margin-bottom: 6px; }
-  .use-case-desc { font-size: 13px; color: var(--slate-600); }
+    .comparison {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--slate-200);
+      background: white;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th {
+      background: var(--slate-100);
+      padding: 16px;
+      text-align: left;
+      font-weight: 800;
+      color: var(--blue-600);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      border-bottom: 2px solid var(--slate-200);
+    }
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--slate-200);
+    }
+    tr:last-child td { border-bottom: 0; }
+    td:first-child {
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+    .check { color: var(--green); font-weight: 800; }
+    .x { color: var(--red); font-weight: 800; }
+    .partial { color: var(--amber); font-weight: 800; }
 
-  footer { max-width: 1200px; margin: 80px auto 0; padding: 48px 0; border-top: 1px solid var(--slate-200); text-align: center; color: var(--slate-600); font-size: 14px; }
+    .use-cases {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .use-case {
+      padding: 28px;
+      border-radius: 12px;
+      background: white;
+      border: 1px solid var(--slate-200);
+      text-align: center;
+      transition: all 200ms ease;
+    }
+    .use-case:hover {
+      border-color: var(--blue-600);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.1);
+    }
+    .use-case-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+    .use-case-name {
+      font-weight: 800;
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--slate-900);
+    }
+    .use-case-desc {
+      font-size: 14px;
+      color: var(--slate-600);
+    }
 
-  @media (max-width: 640px) {
-    h1 { font-size: 32px; }
-    h2 { font-size: 22px; }
-    .hero p { font-size: 16px; }
-    .features { grid-template-columns: 1fr; gap: 16px; }
-    .feature { padding: 20px; }
-    .two-col { gap: 24px; }
-    table { font-size: 12px; }
-    th, td { padding: 8px 12px; }
-    .use-cases { grid-template-columns: repeat(2, 1fr); }
-  }
-</style>
+    .cta-section {
+      max-width: 1200px;
+      margin: 80px auto;
+      text-align: center;
+      padding: 60px 40px;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      border-radius: 16px;
+      color: white;
+    }
+    .cta-section h2 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      margin-top: 0;
+      color: white;
+    }
+    .cta-section p {
+      font-size: 18px;
+      margin-bottom: 32px;
+      opacity: 0.95;
+    }
+    .cta-button-light {
+      display: inline-block;
+      padding: 14px 36px;
+      background: white;
+      color: var(--blue-600);
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: all 200ms ease;
+    }
+    .cta-button-light:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 0;
+      border-top: 1px solid var(--slate-200);
+      text-align: center;
+      color: var(--slate-600);
+      font-size: 14px;
+    }
+    .footer-links { margin-top: 16px; }
+    .footer-links a { margin: 0 16px; }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 16px; }
+      .nav-link { margin-left: 0; display: none; }
+      h1 { font-size: 32px; }
+      h2 { font-size: 28px; }
+      .hero { grid-template-columns: 1fr; gap: 32px; margin-bottom: 64px; }
+      .showcase { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px; }
+      .showcase-images { grid-template-columns: 1fr; }
+      .features { grid-template-columns: 1fr; gap: 16px; }
+      .feature { padding: 24px; }
+      .two-col { gap: 24px; }
+      table { font-size: 12px; }
+      th, td { padding: 8px 12px; }
+      .use-cases { grid-template-columns: repeat(2, 1fr); }
+      .cta-section { padding: 40px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 0 12px; }
+      h1 { font-size: 28px; }
+      h2 { font-size: 24px; }
+      .hero-subtitle { font-size: 16px; }
+      .strip { gap: 12px; }
+      .strip-cell { padding: 16px; }
+      .use-cases { grid-template-columns: 1fr; }
+      .cta-section { padding: 32px 16px; margin: 40px auto; }
+    }
+  </style>
+</head>
+<body>
 
 <header>
   <a href="#" class="logo">
-    <img src="Design/Logo/logo.svg" alt="Timeminator">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" role="img" aria-label="Timeminator" style="height: 40px; width: auto;">
+      <defs>
+        <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f8fafc"/>
+          <stop offset=".08" stop-color="#f8fafc"/>
+          <stop offset=".32" stop-color="#cbd5e1"/>
+          <stop offset=".48" stop-color="#334155"/>
+          <stop offset=".52" stop-color="#1e293b"/>
+          <stop offset=".68" stop-color="#64748b"/>
+          <stop offset=".85" stop-color="#f1f5f9"/>
+          <stop offset="1" stop-color="#334155"/>
+        </linearGradient>
+        <radialGradient id="redCore" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fff" stop-opacity=".85"/>
+          <stop offset=".3" stop-color="#fecaca" stop-opacity=".6"/>
+          <stop offset="1" stop-color="#dc2626" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <text x="700" y="330" text-anchor="middle" font-family="'Impact','Arial Narrow Bold','Oswald','Anton',sans-serif" font-size="230" font-weight="900" letter-spacing="6" stroke="#0f172a" stroke-width="10" fill="none" style="paint-order:stroke;">TIMEMINATOR</text>
+      <text x="700" y="330" text-anchor="middle" font-family="'Impact','Arial Narrow Bold','Oswald','Anton',sans-serif" font-size="230" font-weight="900" letter-spacing="6" fill="url(#chrome)">TIMEMINATOR</text>
+    </svg>
   </a>
 </header>
 
 <main>
   <section class="hero">
-    <h1>Time Tracking That Doesn't Complicate, It Clarifies</h1>
-    <p>Self-hosted, project-based time tracker built for SMBs. No bloat, no SaaS lock-in: live timer, custom categories, budget-vs-actual analytics, and team sentiment tracking — all on your server.</p>
-    <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+    <div class="hero-content">
+      <h1>Time Tracking That Doesn't Complicate, It Clarifies</h1>
+      <p class="hero-subtitle">Self-hosted, project-based time tracker built for SMBs. No bloat, no SaaS lock-in: live timer, custom categories, budget-vs-actual analytics, and team sentiment tracking — all on your server.</p>
+      <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started Now</button>
+    </div>
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 640" role="img" aria-label="Timeminator mascot" class="hero-mascot">
+        <defs>
+          <linearGradient id="chrome-m" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f8fafc"/>
+            <stop offset=".45" stop-color="#cbd5e1"/>
+            <stop offset=".55" stop-color="#94a3b8"/>
+            <stop offset="1" stop-color="#475569"/>
+          </linearGradient>
+          <linearGradient id="chromeSide-m" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#475569"/>
+            <stop offset=".5" stop-color="#e2e8f0"/>
+            <stop offset="1" stop-color="#334155"/>
+          </linearGradient>
+          <linearGradient id="leather-m" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#111827"/>
+            <stop offset="1" stop-color="#000"/>
+          </linearGradient>
+          <linearGradient id="dial-m" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f1f5f9"/>
+            <stop offset="1" stop-color="#cbd5e1"/>
+          </linearGradient>
+          <radialGradient id="redEye-m" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset=".18" stop-color="#fecaca"/>
+            <stop offset=".45" stop-color="#ef4444"/>
+            <stop offset="1" stop-color="#7f1d1d"/>
+          </radialGradient>
+          <filter id="redGlow-m" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <g id="body" transform="translate(0,0)">
+          <path d="M60 640 L100 380 Q140 350 175 342 L200 360 L240 342 Q305 335 345 360 L370 342 Q405 355 425 385 L470 640 Z" fill="url(#leather-m)"/>
+          <g id="leftArm">
+            <ellipse cx="112" cy="405" rx="26" ry="34" fill="url(#chromeSide-m)"/>
+            <rect x="90" y="425" width="44" height="22" rx="4" fill="#0f172a"/>
+            <rect x="95" y="447" width="36" height="18" rx="3" fill="url(#chromeSide-m)"/>
+            <rect x="98" y="465" width="32" height="18" rx="3" fill="#0f172a"/>
+            <rect x="100" y="483" width="28" height="18" rx="3" fill="url(#chromeSide-m)"/>
+          </g>
+        </g>
+        <g id="head" transform="translate(240,180)">
+          <circle r="128" fill="url(#chrome-m)"/>
+          <circle r="120" fill="#0f172a"/>
+          <circle r="118" fill="url(#dial-m)"/>
+          <g font-family="'Inter',system-ui,sans-serif" font-weight="900" font-size="22" fill="#0f172a" text-anchor="middle">
+            <text x="0" y="-72">12</text>
+            <text x="82" y="8">3</text>
+            <text x="0" y="88">6</text>
+            <text x="-82" y="8">9</text>
+          </g>
+          <g id="shades">
+            <path d="M-108 -10 Q-104 -34 -60 -34 L-14 -34 Q0 -32 0 -22 Q0 -32 14 -34 L60 -34 Q104 -34 108 -10 L104 6 Q98 30 60 32 L14 32 Q0 28 0 18 Q0 28 -14 32 L-60 32 Q-98 30 -104 6 Z" fill="#050505" stroke="#0b1220" stroke-width="2"/>
+            <g filter="url(#redGlow-m)">
+              <ellipse cx="-58" cy="-2" rx="38" ry="24" fill="url(#redEye-m)"/>
+              <ellipse cx="58" cy="-2" rx="38" ry="24" fill="url(#redEye-m)"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
   </section>
 
   <section class="strip">
-    <div class="strip-cell"><div class="strip-label">Deployment</div><div class="strip-value">PHP 8.1+ · MySQL / SQLite</div></div>
-    <div class="strip-cell"><div class="strip-label">Auditable</div><div class="strip-value">Full booking history · Immutable imports</div></div>
-    <div class="strip-cell"><div class="strip-label">Privacy</div><div class="strip-value">Self-hosted · GDPR compliant · No SaaS</div></div>
-    <div class="strip-cell"><div class="strip-label">Setup</div><div class="strip-value">Zero-config · SQLite ready</div></div>
+    <div class="strip-cell">
+      <div class="strip-label">💻 Deployment</div>
+      <div class="strip-value">PHP 8.1+ · MySQL / SQLite</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-label">✓ Auditable</div>
+      <div class="strip-value">Full booking history · Immutable imports</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-label">🔒 Privacy</div>
+      <div class="strip-value">Self-hosted · GDPR compliant</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-label">⚡ Setup</div>
+      <div class="strip-value">Zero-config · SQLite ready</div>
+    </div>
   </section>
 
+  <h2>Core Features</h2>
   <section class="features">
     <div class="feature">
-      <div class="icon">⏱</div>
+      <div class="feature-icon">⏱️</div>
       <h3>Live Timer + Manual Booking</h3>
-      <p><strong>Flexible input methods:</strong> start/stop timer for real-time tracking or manually log hours. <strong>Custom categories</strong> (Client Project, Research, Internal) let teams allocate time exactly how they work.</p>
+      <p><strong>Flexible input:</strong> start/stop timer for real-time tracking or manually log hours. <strong>Custom categories</strong> let teams allocate time exactly how they work.</p>
     </div>
-
     <div class="feature">
-      <div class="icon">📊</div>
-      <h3>Budget vs. Actual Analytics</h3>
-      <p><strong>Three curves per project:</strong> overlay your plan against actuals in one view. <strong>Pro-employee breakdowns</strong> show time allocation across project types, catching imbalance early.</p>
+      <div class="feature-icon">📊</div>
+      <h3>Budget vs. Actual</h3>
+      <p><strong>Three curves:</strong> overlay your plan against actuals in one view. <strong>Per-employee breakdowns</strong> show time allocation across projects, catching imbalance early.</p>
     </div>
-
     <div class="feature">
-      <div class="icon">❤️</div>
-      <h3>Team Sentiment Tracking</h3>
-      <p>Monthly <strong>sentiment ratings</strong> (personal & project-level) combined with workload data surface burnout risk, staffing gaps, and customer satisfaction in one loop.</p>
+      <div class="feature-icon">❤️</div>
+      <h3>Team Sentiment</h3>
+      <p>Monthly <strong>sentiment ratings</strong> combined with workload data surface burnout risk, staffing gaps, and satisfaction in one dashboard.</p>
+    </div>
+  </section>
+
+  <section class="showcase">
+    <div class="showcase-content">
+      <h3>The Timeminator Team in Action</h3>
+      <p style="color: var(--slate-600); line-height: 1.7; margin-bottom: 20px;">Built for diverse teams across agencies, R&D departments, consulting firms, and startups. Every team member gets instant visibility into workload and project status.</p>
+      <ul style="list-style: none; margin-top: 24px;">
+        <li style="margin-bottom: 12px;">✓ Real-time workload visibility</li>
+        <li style="margin-bottom: 12px;">✓ Zero learning curve</li>
+        <li>✓ Built for collaboration</li>
+      </ul>
+    </div>
+    <div class="showcase-images">
+      <img src="Design/Images/Timinator_male_pose01.png" alt="Team member 1">
+      <img src="Design/Images/Timinator_female_pose01.png" alt="Team member 2">
+      <img src="Design/Images/Timinator_couple_pose01.png" alt="Team collaboration">
+      <img src="Design/Images/Timeminator_02.png" alt="Dashboard view">
     </div>
   </section>
 
   <section class="section">
-    <h2>Why Timeminator, Not SaaS</h2>
+    <h2>Why Timeminator?</h2>
     <div class="two-col">
       <div class="feature-list">
-        <div class="feature-item"><div class="dot"></div><div class="feature-item-text"><strong>No bloat.</strong> Invoicing, expense reports, mileage tracking—removed. You get time tracking, budget analytics, and team sentiment. That's it.</div></div>
-        <div class="feature-item"><div class="dot"></div><div class="feature-item-text"><strong>Custom categories.</strong> Define your own project types (Kunde / Forschung / Intern). Most SaaS force generic "projects" + "tags."</div></div>
-        <div class="feature-item"><div class="dot"></div><div class="feature-item-text"><strong>Budget insights.</strong> Three-curve view (Budget / Time / Resources) is unique to Timeminator. Toggl and Clockify have zero budget integration.</div></div>
+        <div class="feature-item">
+          <div class="dot"></div>
+          <div class="feature-item-text"><strong>No bloat.</strong> We removed invoicing, expense reports, and mileage tracking. You get time tracking, budget analytics, and sentiment. That's it.</div>
+        </div>
+        <div class="feature-item">
+          <div class="dot"></div>
+          <div class="feature-item-text"><strong>Custom categories.</strong> Define your own project types. Most SaaS force generic "projects" + "tags."</div>
+        </div>
+        <div class="feature-item">
+          <div class="dot"></div>
+          <div class="feature-item-text"><strong>Budget insights.</strong> Three-curve view is unique to Timeminator. Toggl and Clockify have zero budget integration.</div>
+        </div>
       </div>
       <div class="feature-list">
-        <div class="feature-item"><div class="dot teal"></div><div class="feature-item-text"><strong>Self-hosted.</strong> Run locally on SQLite (zero infrastructure) or on your own MySQL server. No vendor lock-in, no SaaS bills, full GDPR control.</div></div>
-        <div class="feature-item"><div class="dot teal"></div><div class="feature-item-text"><strong>Sentiment tracking.</strong> Combine workload data with team mood. No other time tracker does this out of the box.</div></div>
-        <div class="feature-item"><div class="dot teal"></div><div class="feature-item-text"><strong>Audit-ready by design.</strong> Immutable booking history, versioned imports, role-based permissions. Built for teams that need proof.</div></div>
+        <div class="feature-item">
+          <div class="dot teal"></div>
+          <div class="feature-item-text"><strong>Self-hosted.</strong> Run on SQLite locally or your own server. No vendor lock-in, no SaaS bills, full GDPR control.</div>
+        </div>
+        <div class="feature-item">
+          <div class="dot teal"></div>
+          <div class="feature-item-text"><strong>Sentiment tracking.</strong> Combine workload with team mood. No other time tracker does this.</div>
+        </div>
+        <div class="feature-item">
+          <div class="dot teal"></div>
+          <div class="feature-item-text"><strong>Audit-ready.</strong> Immutable booking history, versioned imports, role-based permissions. Built for compliance.</div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="comparison">
-    <h2>Head-to-Head: Timeminator vs. Market</h2>
+    <h2>Head-to-Head Comparison</h2>
     <div class="table-wrapper">
       <table>
         <thead>
@@ -162,7 +601,7 @@
             <td class="check">✓</td>
           </tr>
           <tr>
-            <td>Custom Categories (3+ types)</td>
+            <td>Custom Categories</td>
             <td class="check">✓</td>
             <td class="x">✗</td>
             <td class="check">✓</td>
@@ -190,7 +629,7 @@
             <td class="x">✗</td>
           </tr>
           <tr>
-            <td>Self-Hosted / On-Premise</td>
+            <td>Self-Hosted</td>
             <td class="check">✓</td>
             <td class="x">✗</td>
             <td class="x">✗</td>
@@ -231,41 +670,32 @@
       <div class="use-case">
         <div class="use-case-icon">🏭</div>
         <div class="use-case-name">Consulting</div>
-        <div class="use-case-desc">Budget-ready actuals for steering</div>
+        <div class="use-case-desc">Budget-ready actuals</div>
       </div>
       <div class="use-case">
         <div class="use-case-icon">🚀</div>
         <div class="use-case-name">Startups</div>
-        <div class="use-case-desc">No SaaS lock-in, full data control</div>
+        <div class="use-case-desc">No vendor lock-in</div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="contact">
-    <h2>Getting Started</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>01 Web Installer</h3>
-        <p>Set up in 2 minutes with our web-based installer. No CLI knowledge required.</p>
-      </div>
-      <div class="feature">
-        <h3>02 Configure</h3>
-        <p>Create projects, define your custom categories, and add team members.</p>
-      </div>
-      <div class="feature">
-        <h3>03 Track</h3>
-        <p>Start tracking time instantly. Timer, manual logs, and reports are live immediately.</p>
-      </div>
-    </div>
-    <div style="text-align: center; margin-top: 40px;">
-      <p style="font-size: 16px; margin-bottom: 20px;">Ready to take control of your time tracking?</p>
-      <a href="https://github.com/freshNfunky/Timeminator" target="_blank" class="cta-button">View on GitHub</a>
-    </div>
+  <section class="cta-section" id="contact">
+    <h2>Ready to Take Control?</h2>
+    <p>Deploy Timeminator in minutes. Self-hosted. No credit card. No setup fees.</p>
+    <a href="https://github.com/freshNfunky/Timeminator" target="_blank" class="cta-button-light">View on GitHub →</a>
   </section>
 </main>
 
 <footer>
   <p><strong>Timeminator</strong> — Self-hosted time tracking for SMBs</p>
   <p style="margin-top: 12px; font-size: 12px;">MIT (Community) or Pro License · PHP 8.1+ · MySQL / SQLite</p>
-  <p style="margin-top: 12px;"><a href="https://github.com/freshNfunky/Timeminator">GitHub</a> · <a href="https://github.com/freshNfunky/Timeminator/issues">Issues</a></p>
+  <div class="footer-links" style="margin-top: 16px;">
+    <a href="https://github.com/freshNfunky/Timeminator">GitHub</a>
+    <span>·</span>
+    <a href="https://github.com/freshNfunky/Timeminator/issues">Issues</a>
+  </div>
 </footer>
+
+</body>
+</html>
