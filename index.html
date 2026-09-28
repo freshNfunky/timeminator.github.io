@@ -1,268 +1,933 @@
-<title>Timeminator – Self-Hosted Time Tracking for SMBs</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  :root {
-    --slate-50: #f8fafc;
-    --slate-100: #f1f5f9;
-    --slate-200: #e2e8f0;
-    --slate-600: #475569;
-    --slate-900: #0f172a;
-    --blue-600: #2563eb;
-    --blue-700: #1d4ed8;
-    --green: #10b981;
-    --red: #ef4444;
-    --amber: #f59e0b;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeminator – Self-Hosted Time Tracking for SMBs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap">
+  <style>
+    :root {
+      --color-accent: #2563eb;
+      --color-accent-dark: #1d4ed8;
+      --color-surface: #f4f6f8;
+      --color-surface-light: #ffffff;
+      --color-text: #101418;
+      --color-text-light: #64748b;
+      --color-divider: #e2e8f0;
+      --color-dark-bg: #0b1116;
+      --color-dark-text: #ffffff;
+      --color-success: #10b981;
+      --color-warning: #f59e0b;
+      --color-danger: #ef4444;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--slate-50); color: var(--slate-900); line-height: 1.6; padding: 0 16px; }
-  a { color: var(--blue-600); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  header { padding: 24px 0; border-bottom: 1px solid var(--slate-200); margin-bottom: 48px; max-width: 1200px; margin-left: auto; margin-right: auto; }
-  .logo { font-size: 20px; font-weight: 700; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  .hero { max-width: 1200px; margin: 0 auto 64px; text-align: center; }
-  h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
-  h2 { font-size: 28px; font-weight: 700; margin-bottom: 24px; margin-top: 56px; }
-  .hero p { font-size: 18px; color: var(--slate-600); margin-bottom: 32px; max-width: 640px; margin-left: auto; margin-right: auto; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--color-surface);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
 
-  .cta-button { display: inline-block; padding: 12px 32px; background: var(--blue-600); color: white; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; transition: background 200ms ease; }
-  .cta-button:hover { background: var(--blue-700); }
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
 
-  .strip { max-width: 1200px; margin: 0 auto 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-  .strip-cell { padding: 16px; border-radius: 6px; background: white; border: 1px solid var(--slate-200); }
-  .strip-label { font-size: 11px; font-weight: 600; color: var(--blue-600); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-  .strip-value { font-size: 14px; font-weight: 500; }
+    a:hover {
+      color: var(--color-accent-dark);
+    }
 
-  .features { max-width: 1200px; margin: 0 auto 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-  .feature { padding: 28px; border-radius: 8px; background: white; border: 1px solid var(--slate-200); }
-  .feature h3 { font-size: 18px; font-weight: 600; margin-bottom: 12px; }
-  .feature p { font-size: 14px; color: var(--slate-600); line-height: 1.6; }
-  .icon { font-size: 32px; margin-bottom: 16px; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--color-divider);
+      padding: 16px 0;
+    }
 
-  .section { max-width: 1200px; margin: 0 auto 64px; }
-  .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-  .feature-list { display: flex; flex-direction: column; gap: 20px; }
-  .feature-item { display: flex; gap: 12px; align-items: flex-start; }
-  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue-600); margin-top: 6px; flex-shrink: 0; }
-  .dot.teal { background: #12a29c; }
-  .feature-item-text { font-size: 14px; line-height: 1.6; color: var(--slate-600); }
-  .feature-item strong { color: var(--slate-900); font-weight: 600; }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-  .comparison { max-width: 1200px; margin: 0 auto 64px; }
-  .table-wrapper { overflow-x: auto; border-radius: 8px; border: 1px solid var(--slate-200); }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; background: white; }
-  th { background: var(--slate-100); padding: 12px 16px; text-align: left; font-weight: 600; color: var(--blue-600); text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; border-bottom: 2px solid var(--slate-200); }
-  td { padding: 12px 16px; border-bottom: 1px solid var(--slate-200); }
-  tr:last-child td { border-bottom: 0; }
-  td:first-child { font-weight: 500; }
-  .check { color: var(--green); font-weight: 600; }
-  .x { color: var(--red); font-weight: 600; }
-  .partial { color: var(--amber); font-weight: 600; }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-  .use-cases { max-width: 1200px; margin: 0 auto 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-  .use-case { padding: 20px; border-radius: 8px; background: white; border: 1px solid var(--slate-200); text-align: center; }
-  .use-case-icon { font-size: 32px; margin-bottom: 12px; }
-  .use-case-name { font-weight: 600; font-size: 15px; margin-bottom: 6px; }
-  .use-case-desc { font-size: 13px; color: var(--slate-600); }
+    .logo {
+      font-size: clamp(18px, 4vw, 24px);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-  footer { max-width: 1200px; margin: 80px auto 0; padding: 48px 0; border-top: 1px solid var(--slate-200); text-align: center; color: var(--slate-600); font-size: 14px; }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
 
-  @media (max-width: 640px) {
-    h1 { font-size: 32px; }
-    h2 { font-size: 22px; }
-    .hero p { font-size: 16px; }
-    .features { grid-template-columns: 1fr; gap: 16px; }
-    .feature { padding: 20px; }
-    .two-col { gap: 24px; }
-    table { font-size: 12px; }
-    th, td { padding: 8px 12px; }
-    .use-cases { grid-template-columns: repeat(2, 1fr); }
-  }
-</style>
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text);
+    }
 
-<header>
-  <div class="logo">⏱ Timeminator</div>
-</header>
+    .nav-links a:hover {
+      color: var(--color-accent);
+    }
 
-<main>
-  <section class="hero">
-    <h1>Time Tracking That Doesn't Complicate, It Clarifies</h1>
-    <p>Self-hosted, project-based time tracker built for SMBs. No bloat, no SaaS lock-in: live timer, custom categories, budget-vs-actual analytics, and team sentiment tracking — all on your server.</p>
-    <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
-  </section>
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
 
-  <section class="strip">
-    <div class="strip-cell"><div class="strip-label">Deployment</div><div class="strip-value">PHP 8.1+ · MySQL / SQLite</div></div>
-    <div class="strip-cell"><div class="strip-label">Auditable</div><div class="strip-value">Full booking history · Immutable imports</div></div>
-    <div class="strip-cell"><div class="strip-label">Privacy</div><div class="strip-value">Self-hosted · GDPR compliant · No SaaS</div></div>
-    <div class="strip-cell"><div class="strip-label">Setup</div><div class="strip-value">Zero-config · SQLite ready</div></div>
-  </section>
+    .hero {
+      background: linear-gradient(135deg, var(--color-dark-bg), #1a2332);
+      color: var(--color-dark-text);
+      padding: clamp(60px, 10vw, 100px) 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-  <section class="features">
-    <div class="feature">
-      <div class="icon">⏱</div>
-      <h3>Live Timer + Manual Booking</h3>
-      <p><strong>Flexible input methods:</strong> start/stop timer for real-time tracking or manually log hours. <strong>Custom categories</strong> (Client Project, Research, Internal) let teams allocate time exactly how they work.</p>
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.15), transparent);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      font-size: clamp(16px, 2vw, 18px);
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 660px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--color-accent);
+      color: white;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 200ms ease;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    .cta-button:hover {
+      background: var(--color-accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .hero .cta-button {
+      background: white;
+      color: var(--color-accent);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero .cta-button:hover {
+      background: var(--color-surface);
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: clamp(60px, 10vw, 80px) 20px;
+    }
+
+    section.light {
+      background: var(--color-surface-light);
+    }
+
+    section.dark {
+      background: var(--color-dark-bg);
+      color: var(--color-dark-text);
+    }
+
+    section.dark h2,
+    section.dark h3 {
+      color: var(--color-dark-text);
+    }
+
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 800;
+      margin-bottom: 40px;
+      letter-spacing: -0.5px;
+    }
+
+    h3 {
+      font-size: clamp(16px, 2vw, 18px);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .grid.cols-4 {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .grid.cols-2 {
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    }
+
+    @media (max-width: 768px) {
+      .grid.cols-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--color-surface-light);
+      border: 1px solid var(--color-divider);
+      border-radius: 8px;
+      padding: 32px;
+      transition: all 200ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      border-color: var(--color-accent);
+    }
+
+    section.dark .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    section.dark .card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--color-accent);
+    }
+
+    .icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .stat-block {
+      background: var(--color-surface-light);
+      padding: 20px;
+      border-radius: 6px;
+      border: 1px solid var(--color-divider);
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .comparison-table thead {
+      background: var(--color-surface);
+    }
+
+    .comparison-table th {
+      padding: 16px;
+      text-align: left;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid var(--color-divider);
+    }
+
+    .comparison-table td {
+      padding: 16px;
+      border-bottom: 1px solid var(--color-divider);
+      background: var(--color-surface-light);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .comparison-table td:first-child {
+      font-weight: 600;
+    }
+
+    .check {
+      color: var(--color-success);
+      font-weight: 700;
+    }
+
+    .x {
+      color: var(--color-danger);
+      font-weight: 700;
+    }
+
+    .partial {
+      color: var(--color-warning);
+      font-weight: 700;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 16px;
+    }
+
+    .feature-item-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    section.dark .feature-item-dot {
+      background: var(--color-accent);
+    }
+
+    .feature-item-text {
+      font-size: 15px;
+      line-height: 1.7;
+      color: inherit;
+    }
+
+    .feature-item strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--color-text);
+    }
+
+    section.dark .feature-item strong {
+      color: var(--color-dark-text);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .gallery-item {
+      background: var(--color-surface-light);
+      border: 1px solid var(--color-divider);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 200ms ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      border-color: var(--color-accent);
+    }
+
+    .gallery-item-image {
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(135deg, var(--color-surface), var(--color-divider));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .gallery-item-label {
+      padding: 16px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--color-text);
+      font-size: 14px;
+    }
+
+    .installation-guide {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .guide-step {
+      background: var(--color-surface-light);
+      border: 1px solid var(--color-divider);
+      border-radius: 8px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guide-step::before {
+      content: attr(data-step);
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 24px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 60%);
+    }
+
+    .guide-step h3 {
+      margin-left: 0;
+      margin-top: 8px;
+    }
+
+    .guide-step p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--color-text-light);
+      margin-top: 12px;
+    }
+
+    .guide-step ul {
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .guide-step li {
+      font-size: 13px;
+      color: var(--color-text-light);
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .guide-step li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--color-success);
+      font-weight: 700;
+    }
+
+    .why-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .why-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .why-column h3 {
+      margin-top: 0;
+    }
+
+    footer {
+      background: var(--color-text);
+      color: var(--color-dark-text);
+      padding: 60px 20px 40px;
+      border-top: 2px solid var(--color-divider);
+    }
+
+    footer .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    footer h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer ul li {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    footer a {
+      color: var(--color-accent);
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    @media (max-width: 640px) {
+      section {
+        padding: 40px 20px;
+      }
+
+      h2 {
+        margin-bottom: 28px;
+      }
+
+      .hero {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid.cols-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-table {
+        font-size: 12px;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 12px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">⏱ Timeminator</div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#comparison">Compare</a></li>
+          <li><a href="#guide">Installation</a></li>
+          <li><a href="https://github.com/freshnfunky/Timeminator" target="_blank">GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Time Tracking That Doesn't Complicate, It Clarifies</h1>
+        <p>Self-hosted, project-based time tracker built for SMBs. No bloat, no SaaS lock-in: live timer, custom categories, budget-vs-actual analytics, and team sentiment tracking — all on your server.</p>
+        <button class="cta-button" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Explore Features</button>
+      </div>
+    </section>
+
+    <section class="light">
+      <div class="container">
+        <div class="grid cols-4">
+          <div class="stat-block">
+            <div class="stat-label">Deployment</div>
+            <div class="stat-value">PHP 8.1+ · MySQL / SQLite</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-label">Auditable</div>
+            <div class="stat-value">Full booking history · Immutable imports</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-label">Privacy</div>
+            <div class="stat-value">Self-hosted · GDPR compliant · No SaaS</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-label">Setup</div>
+            <div class="stat-value">Zero-config · SQLite ready</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="light" id="features">
+      <div class="container">
+        <h2>Core Features</h2>
+        <div class="grid">
+          <div class="card">
+            <span class="icon">⏱</span>
+            <h3>Live Timer + Manual Booking</h3>
+            <p><strong>Flexible input methods:</strong> start/stop timer for real-time tracking or manually log hours. <strong>Custom categories</strong> (Client Project, Research, Internal) let teams allocate time exactly how they work.</p>
+          </div>
+
+          <div class="card">
+            <span class="icon">📊</span>
+            <h3>Budget vs. Actual Analytics</h3>
+            <p><strong>Three curves per project:</strong> overlay your plan against actuals in one view. <strong>Pro-employee breakdowns</strong> show time allocation across project types, catching imbalance early.</p>
+          </div>
+
+          <div class="card">
+            <span class="icon">❤️</span>
+            <h3>Team Sentiment Tracking</h3>
+            <p>Monthly <strong>sentiment ratings</strong> (personal &amp; project-level) combined with workload data surface burnout risk, staffing gaps, and customer satisfaction in one loop.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark">
+      <div class="container">
+        <h2>Why Timeminator, Not SaaS</h2>
+        <div class="why-section">
+          <div class="why-column">
+            <div class="feature-list">
+              <div class="feature-item">
+                <div class="feature-item-dot"></div>
+                <div class="feature-item-text">
+                  <strong>No bloat.</strong>
+                  Invoicing, expense reports, mileage tracking removed. You get time tracking, budget analytics, and team sentiment. That's it.
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-dot"></div>
+                <div class="feature-item-text">
+                  <strong>Custom categories.</strong>
+                  Define your own project types (Kunde / Forschung / Intern). Most SaaS force generic "projects" + "tags."
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-dot"></div>
+                <div class="feature-item-text">
+                  <strong>Budget insights.</strong>
+                  Three-curve view (Budget / Time / Resources) is unique to Timeminator. Toggl and Clockify have zero budget integration.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="why-column">
+            <div class="feature-list">
+              <div class="feature-item">
+                <div class="feature-item-dot"></div>
+                <div class="feature-item-text">
+                  <strong>Self-hosted.</strong>
+                  Run locally on SQLite (zero infrastructure) or on your own MySQL server. No vendor lock-in, no SaaS bills, full GDPR control.
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-dot"></div>
+                <div class="feature-item-text">
+                  <strong>Sentiment tracking.</strong>
+                  Combine workload data with team mood. No other time tracker does this out of the box.
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-dot"></div>
+                <div class="feature-item-text">
+                  <strong>Audit-ready by design.</strong>
+                  Immutable booking history, versioned imports, role-based permissions. Built for teams that need proof.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="light" id="comparison">
+      <div class="container">
+        <h2>Head-to-Head Comparison</h2>
+        <div style="overflow-x: auto;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th style="width: 32%;">Feature</th>
+                <th style="width: 17%;">Timeminator</th>
+                <th style="width: 17%;">Clockify</th>
+                <th style="width: 17%;">Float</th>
+                <th style="width: 17%;">Toggl</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Time Tracking</strong></td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+                <td class="x">✗</td>
+                <td class="check">✓</td>
+              </tr>
+              <tr>
+                <td>Custom Categories (3+ types)</td>
+                <td class="check">✓</td>
+                <td class="x">✗</td>
+                <td class="check">✓</td>
+                <td class="x">✗</td>
+              </tr>
+              <tr>
+                <td><strong>Budget vs. Actual</strong></td>
+                <td class="check">✓</td>
+                <td class="x">✗</td>
+                <td class="check">✓</td>
+                <td class="x">✗</td>
+              </tr>
+              <tr>
+                <td>3 Curves (Budget/Time/Resources)</td>
+                <td class="check">✓</td>
+                <td class="x">✗</td>
+                <td class="partial">⊘ (2)</td>
+                <td class="x">✗</td>
+              </tr>
+              <tr>
+                <td><strong>Sentiment Tracking</strong></td>
+                <td class="check">✓</td>
+                <td class="x">✗</td>
+                <td class="x">✗</td>
+                <td class="x">✗</td>
+              </tr>
+              <tr>
+                <td>Self-Hosted / On-Premise</td>
+                <td class="check">✓</td>
+                <td class="x">✗</td>
+                <td class="x">✗</td>
+                <td class="x">✗</td>
+              </tr>
+              <tr>
+                <td><strong>Pricing (SMB)</strong></td>
+                <td class="check">1x fee</td>
+                <td class="check">$10–15/u</td>
+                <td class="partial">~$150/mo</td>
+                <td class="check">$10/u</td>
+              </tr>
+              <tr>
+                <td>Zero Setup (SQLite)</td>
+                <td class="check">✓</td>
+                <td class="x">✗</td>
+                <td class="x">✗</td>
+                <td class="x">✗</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="light">
+      <div class="container">
+        <h2>Built For</h2>
+        <div class="grid">
+          <div class="card">
+            <span class="icon">🏢</span>
+            <h3>Agencies</h3>
+            <p>Project-based resource allocation, precise budget tracking, and multi-team workload distribution.</p>
+          </div>
+          <div class="card">
+            <span class="icon">🔬</span>
+            <h3>R&D Teams</h3>
+            <p>Track client vs. research split with custom categories and detailed sentiment insights for team dynamics.</p>
+          </div>
+          <div class="card">
+            <span class="icon">🏭</span>
+            <h3>Consulting</h3>
+            <p>Budget-ready actuals for project steering, with immutable audit trails and role-based permissions.</p>
+          </div>
+          <div class="card">
+            <span class="icon">🚀</span>
+            <h3>Startups</h3>
+            <p>No SaaS lock-in, full data control, and cost-effective self-hosted deployment on SQLite.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="light" id="gallery">
+      <div class="container">
+        <h2>Design Assets &amp; Branding</h2>
+        <div class="gallery">
+          <div class="gallery-item">
+            <div class="gallery-item-image">🤖</div>
+            <div class="gallery-item-label">Mascot – Cyborg Operator</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-item-image">⏱</div>
+            <div class="gallery-item-label">Logo Mark</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-item-image">👤</div>
+            <div class="gallery-item-label">Character – Pose 1</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-item-image">👥</div>
+            <div class="gallery-item-label">Team Illustration</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark" id="guide">
+      <div class="container">
+        <h2>Installation Guide</h2>
+        <div class="installation-guide">
+          <div class="guide-step" data-step="1">
+            <h3>Download &amp; Extract</h3>
+            <p>Get the latest release from GitHub and extract the archive to your web server.</p>
+            <ul>
+              <li>Requires PHP 8.1+</li>
+              <li>MySQL or SQLite database</li>
+              <li>Web server (Apache, Nginx, etc.)</li>
+            </ul>
+          </div>
+
+          <div class="guide-step" data-step="2">
+            <h3>Run Web Installer</h3>
+            <p>Open your browser to the installation URL and follow the guided setup.</p>
+            <ul>
+              <li>Database configuration</li>
+              <li>Admin account creation</li>
+              <li>Base URL settings</li>
+            </ul>
+          </div>
+
+          <div class="guide-step" data-step="3">
+            <h3>Configure Projects</h3>
+            <p>Create your projects and define custom time tracking categories.</p>
+            <ul>
+              <li>Add team members</li>
+              <li>Set project budgets</li>
+              <li>Define categories</li>
+            </ul>
+          </div>
+
+          <div class="guide-step" data-step="4">
+            <h3>Start Tracking</h3>
+            <p>Your team can immediately start tracking time and logging sentiment data.</p>
+            <ul>
+              <li>Live timer or manual logs</li>
+              <li>Monthly sentiment ratings</li>
+              <li>Budget vs. actual reports</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 60px;">
+          <p style="font-size: 16px; margin-bottom: 24px; color: rgba(255, 255, 255, 0.9);">Ready to deploy?</p>
+          <a href="https://github.com/freshnfunky/Timeminator" target="_blank" class="cta-button">View on GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#comparison">Comparison</a></li>
+          <li><a href="#guide">Installation</a></li>
+          <li><a href="https://github.com/freshnfunky/Timeminator" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Documentation</h4>
+        <ul>
+          <li><a href="https://github.com/freshnfunky/Timeminator/wiki" target="_blank">Wiki</a></li>
+          <li><a href="https://github.com/freshnfunky/Timeminator/issues" target="_blank">Issues</a></li>
+          <li><a href="https://github.com/freshnfunky/Timeminator/releases" target="_blank">Releases</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="https://github.com/freshnfunky/Timeminator/blob/main/LICENSE" target="_blank">MIT License</a></li>
+          <li><a href="https://github.com/freshnfunky/Timeminator/blob/main/CODE_OF_CONDUCT.md" target="_blank">Code of Conduct</a></li>
+        </ul>
+      </div>
     </div>
 
-    <div class="feature">
-      <div class="icon">📊</div>
-      <h3>Budget vs. Actual Analytics</h3>
-      <p><strong>Three curves per project:</strong> overlay your plan against actuals in one view. <strong>Pro-employee breakdowns</strong> show time allocation across project types, catching imbalance early.</p>
+    <div class="footer-bottom">
+      <p><strong>Timeminator</strong> – Self-hosted time tracking for SMBs &nbsp; | &nbsp; MIT (Community) or Pro License &nbsp; | &nbsp; PHP 8.1+ &nbsp; | &nbsp; MySQL / SQLite</p>
     </div>
-
-    <div class="feature">
-      <div class="icon">❤️</div>
-      <h3>Team Sentiment Tracking</h3>
-      <p>Monthly <strong>sentiment ratings</strong> (personal & project-level) combined with workload data surface burnout risk, staffing gaps, and customer satisfaction in one loop.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Why Timeminator, Not SaaS</h2>
-    <div class="two-col">
-      <div class="feature-list">
-        <div class="feature-item"><div class="dot"></div><div class="feature-item-text"><strong>No bloat.</strong> Invoicing, expense reports, mileage tracking—removed. You get time tracking, budget analytics, and team sentiment. That's it.</div></div>
-        <div class="feature-item"><div class="dot"></div><div class="feature-item-text"><strong>Custom categories.</strong> Define your own project types (Kunde / Forschung / Intern). Most SaaS force generic "projects" + "tags."</div></div>
-        <div class="feature-item"><div class="dot"></div><div class="feature-item-text"><strong>Budget insights.</strong> Three-curve view (Budget / Time / Resources) is unique to Timeminator. Toggl and Clockify have zero budget integration.</div></div>
-      </div>
-      <div class="feature-list">
-        <div class="feature-item"><div class="dot teal"></div><div class="feature-item-text"><strong>Self-hosted.</strong> Run locally on SQLite (zero infrastructure) or on your own MySQL server. No vendor lock-in, no SaaS bills, full GDPR control.</div></div>
-        <div class="feature-item"><div class="dot teal"></div><div class="feature-item-text"><strong>Sentiment tracking.</strong> Combine workload data with team mood. No other time tracker does this out of the box.</div></div>
-        <div class="feature-item"><div class="dot teal"></div><div class="feature-item-text"><strong>Audit-ready by design.</strong> Immutable booking history, versioned imports, role-based permissions. Built for teams that need proof.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="comparison">
-    <h2>Head-to-Head: Timeminator vs. Market</h2>
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 32%;">Feature</th>
-            <th style="width: 17%;">Timeminator</th>
-            <th style="width: 17%;">Clockify</th>
-            <th style="width: 17%;">Float</th>
-            <th style="width: 17%;">Toggl</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Time Tracking</strong></td>
-            <td class="check">✓</td>
-            <td class="check">✓</td>
-            <td class="x">✗</td>
-            <td class="check">✓</td>
-          </tr>
-          <tr>
-            <td>Custom Categories (3+ types)</td>
-            <td class="check">✓</td>
-            <td class="x">✗</td>
-            <td class="check">✓</td>
-            <td class="x">✗</td>
-          </tr>
-          <tr>
-            <td><strong>Budget vs. Actual</strong></td>
-            <td class="check">✓</td>
-            <td class="x">✗</td>
-            <td class="check">✓</td>
-            <td class="x">✗</td>
-          </tr>
-          <tr>
-            <td>3 Curves (Budget/Time/Resources)</td>
-            <td class="check">✓</td>
-            <td class="x">✗</td>
-            <td class="partial">⊘ (2)</td>
-            <td class="x">✗</td>
-          </tr>
-          <tr>
-            <td><strong>Sentiment Tracking</strong></td>
-            <td class="check">✓</td>
-            <td class="x">✗</td>
-            <td class="x">✗</td>
-            <td class="x">✗</td>
-          </tr>
-          <tr>
-            <td>Self-Hosted / On-Premise</td>
-            <td class="check">✓</td>
-            <td class="x">✗</td>
-            <td class="x">✗</td>
-            <td class="x">✗</td>
-          </tr>
-          <tr>
-            <td><strong>Pricing (SMB)</strong></td>
-            <td class="check">1x fee</td>
-            <td class="check">$10–15/u</td>
-            <td class="partial">~$150/mo</td>
-            <td class="check">$10/u</td>
-          </tr>
-          <tr>
-            <td>Zero Setup (SQLite)</td>
-            <td class="check">✓</td>
-            <td class="x">✗</td>
-            <td class="x">✗</td>
-            <td class="x">✗</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Built For</h2>
-    <div class="use-cases">
-      <div class="use-case">
-        <div class="use-case-icon">🏢</div>
-        <div class="use-case-name">Agencies</div>
-        <div class="use-case-desc">Project-based resource allocation</div>
-      </div>
-      <div class="use-case">
-        <div class="use-case-icon">🔬</div>
-        <div class="use-case-name">R&D Teams</div>
-        <div class="use-case-desc">Track client vs. research split</div>
-      </div>
-      <div class="use-case">
-        <div class="use-case-icon">🏭</div>
-        <div class="use-case-name">Consulting</div>
-        <div class="use-case-desc">Budget-ready actuals for steering</div>
-      </div>
-      <div class="use-case">
-        <div class="use-case-icon">🚀</div>
-        <div class="use-case-name">Startups</div>
-        <div class="use-case-desc">No SaaS lock-in, full data control</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <h2>Getting Started</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>01 Web Installer</h3>
-        <p>Set up in 2 minutes with our web-based installer. No CLI knowledge required.</p>
-      </div>
-      <div class="feature">
-        <h3>02 Configure</h3>
-        <p>Create projects, define your custom categories, and add team members.</p>
-      </div>
-      <div class="feature">
-        <h3>03 Track</h3>
-        <p>Start tracking time instantly. Timer, manual logs, and reports are live immediately.</p>
-      </div>
-    </div>
-    <div style="text-align: center; margin-top: 40px;">
-      <p style="font-size: 16px; margin-bottom: 20px;">Ready to take control of your time tracking?</p>
-      <a href="https://github.com/freshNfunky/Timeminator" target="_blank" class="cta-button">View on GitHub</a>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <p><strong>Timeminator</strong> — Self-hosted time tracking for SMBs</p>
-  <p style="margin-top: 12px; font-size: 12px;">MIT (Community) or Pro License · PHP 8.1+ · MySQL / SQLite</p>
-  <p style="margin-top: 12px;"><a href="https://github.com/freshNfunky/Timeminator">GitHub</a> · <a href="https://github.com/freshNfunky/Timeminator/issues">Issues</a></p>
-</footer>
+  </footer>
+</body>
+</html>
