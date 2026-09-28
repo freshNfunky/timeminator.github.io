@@ -71,12 +71,16 @@
     }
 
     .logo {
-      font-size: clamp(18px, 4vw, 24px);
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      height: 32px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img,
+    .logo svg {
+      height: 100%;
+      width: auto;
+      max-width: 160px;
     }
 
     .nav-links {
@@ -400,9 +404,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 80px;
       padding: 20px;
       text-align: center;
+      overflow: hidden;
+    }
+
+    .gallery-item-image img,
+    .gallery-item-image svg {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
     }
 
     .gallery-item-label {
@@ -588,7 +601,23 @@
 <body>
   <header>
     <div class="container">
-      <div class="logo">⏱ Timeminator</div>
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" style="height: 32px; width: auto;">
+          <defs>
+            <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#e2e8f0"/>
+              <stop offset=".08" stop-color="#f8fafc"/>
+              <stop offset=".32" stop-color="#cbd5e1"/>
+              <stop offset=".48" stop-color="#334155"/>
+              <stop offset=".52" stop-color="#1e293b"/>
+              <stop offset=".68" stop-color="#64748b"/>
+              <stop offset=".85" stop-color="#f1f5f9"/>
+              <stop offset="1" stop-color="#334155"/>
+            </linearGradient>
+          </defs>
+          <text x="700" y="330" text-anchor="middle" font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif" font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed" fill="url(#chrome)">TIMEMINATOR</text>
+        </svg>
+      </div>
       <nav>
         <ul class="nav-links">
           <li><a href="#features">Features</a></li>
@@ -825,20 +854,117 @@
         <h2>Design Assets &amp; Branding</h2>
         <div class="gallery">
           <div class="gallery-item">
-            <div class="gallery-item-image">🤖</div>
-            <div class="gallery-item-label">Mascot – Cyborg Operator</div>
+            <div class="gallery-item-image">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 640" style="width: 180px;">
+                <defs>
+                  <linearGradient id="chrome-g" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#f8fafc"/>
+                    <stop offset=".45" stop-color="#cbd5e1"/>
+                    <stop offset=".55" stop-color="#94a3b8"/>
+                    <stop offset="1" stop-color="#475569"/>
+                  </linearGradient>
+                  <linearGradient id="chromeSide-g" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="#475569"/>
+                    <stop offset=".5" stop-color="#e2e8f0"/>
+                    <stop offset="1" stop-color="#334155"/>
+                  </linearGradient>
+                  <linearGradient id="leather-g" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#111827"/>
+                    <stop offset="1" stop-color="#000"/>
+                  </linearGradient>
+                  <radialGradient id="redMuzzle-g" cx=".3" cy=".5" r=".7">
+                    <stop offset="0" stop-color="#fff5f5"/>
+                    <stop offset=".25" stop-color="#fca5a5"/>
+                    <stop offset=".6" stop-color="#dc2626"/>
+                    <stop offset="1" stop-color="#7f1d1d" stop-opacity="0"/>
+                  </radialGradient>
+                  <filter id="softGlow-g" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+                <g id="head-g" transform="translate(240,180)">
+                  <circle r="128" fill="url(#chrome-g)"/>
+                  <circle r="120" fill="#0f172a"/>
+                  <g id="ticks-g">
+                    <rect x="-1.4" y="-100" width="2.8" height="10" fill="#0f172a" transform="rotate(0)"/>
+                    <rect x="-1.4" y="-100" width="2.8" height="10" fill="#0f172a" transform="rotate(90)"/>
+                    <rect x="-1.4" y="-100" width="2.8" height="10" fill="#0f172a" transform="rotate(180)"/>
+                    <rect x="-1.4" y="-100" width="2.8" height="10" fill="#0f172a" transform="rotate(270)"/>
+                  </g>
+                  <circle r="6" fill="#0f172a" cx="0" cy="0"/>
+                  <circle r="2.5" fill="#dc2626" cx="0" cy="0"/>
+                </g>
+              </svg>
+            </div>
+            <div class="gallery-item-label">Mascot – Cyborg Chronometer</div>
           </div>
+
           <div class="gallery-item">
-            <div class="gallery-item-image">⏱</div>
-            <div class="gallery-item-label">Logo Mark</div>
+            <div class="gallery-item-image">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" style="width: 200px;">
+                <defs>
+                  <linearGradient id="chrome-l" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#e2e8f0"/>
+                    <stop offset=".08" stop-color="#f8fafc"/>
+                    <stop offset=".32" stop-color="#cbd5e1"/>
+                    <stop offset=".48" stop-color="#334155"/>
+                    <stop offset=".52" stop-color="#1e293b"/>
+                    <stop offset=".68" stop-color="#64748b"/>
+                    <stop offset=".85" stop-color="#f1f5f9"/>
+                    <stop offset="1" stop-color="#334155"/>
+                  </linearGradient>
+                </defs>
+                <text x="700" y="330" text-anchor="middle" font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif" font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed" stroke="#0f172a" stroke-width="10" fill="none" style="paint-order:stroke;"/>
+                <text x="700" y="330" text-anchor="middle" font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif" font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed" fill="url(#chrome-l)">TIMEMINATOR</text>
+              </svg>
+            </div>
+            <div class="gallery-item-label">Logo Design – Main Wordmark</div>
           </div>
+
           <div class="gallery-item">
-            <div class="gallery-item-image">👤</div>
-            <div class="gallery-item-label">Character – Pose 1</div>
+            <div class="gallery-item-image">
+              <img src="Timinator_male_pose01.png" alt="Male Character Pose 1" style="max-height: 260px; width: auto;">
+            </div>
+            <div class="gallery-item-label">Character – Male Pose 1</div>
           </div>
+
           <div class="gallery-item">
-            <div class="gallery-item-image">👥</div>
-            <div class="gallery-item-label">Team Illustration</div>
+            <div class="gallery-item-image">
+              <img src="Timinator_female_pose01.png" alt="Female Character Pose 1" style="max-height: 260px; width: auto;">
+            </div>
+            <div class="gallery-item-label">Character – Female Pose 1</div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-item-image">
+              <img src="Timinator_couple_pose01.png" alt="Team Illustration" style="max-height: 260px; width: auto;">
+            </div>
+            <div class="gallery-item-label">Team Illustration – Couple</div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-item-image">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" style="width: 200px;">
+                <defs>
+                  <linearGradient id="chrome-alt" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#e2e8f0"/>
+                    <stop offset=".08" stop-color="#f8fafc"/>
+                    <stop offset=".32" stop-color="#cbd5e1"/>
+                    <stop offset=".48" stop-color="#334155"/>
+                    <stop offset=".52" stop-color="#1e293b"/>
+                    <stop offset=".68" stop-color="#64748b"/>
+                    <stop offset=".85" stop-color="#f1f5f9"/>
+                    <stop offset="1" stop-color="#334155"/>
+                  </linearGradient>
+                </defs>
+                <text x="700" y="330" text-anchor="middle" font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif" font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed" fill="url(#chrome-alt)">TIMEMINATOR</text>
+              </svg>
+            </div>
+            <div class="gallery-item-label">Logo Design – Alternative</div>
           </div>
         </div>
       </div>
