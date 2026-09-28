@@ -29,6 +29,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -36,6 +37,8 @@
       background: var(--color-surface);
       color: var(--color-text);
       line-height: 1.6;
+      overflow-x: hidden;
+      max-width: 100%;
     }
 
     a {
@@ -106,50 +109,39 @@
     }
 
     .hero {
-      background: linear-gradient(110deg, #05070c 0%, #0b1116 46%, #0d1524 100%);
-      color: var(--color-dark-text);
-      padding: clamp(56px, 9vw, 120px) 0;
       position: relative;
       overflow: hidden;
+      color: var(--color-dark-text);
+      background-color: #0b1116;
+      background-image: url('hero-bg.jpg');
+      background-size: cover;
+      background-position: left center;
+      background-repeat: no-repeat;
+      min-height: clamp(460px, 62vh, 640px);
+      display: flex;
+      align-items: center;
+      padding: clamp(48px, 8vw, 96px) 0;
     }
 
-    .hero-media {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      width: min(52%, 640px);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .hero-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 58% center;
-      -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 52%, transparent 96%);
-      mask-image: linear-gradient(90deg, #000 0%, #000 52%, transparent 96%);
-    }
-
-    .hero::after {
+    .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      z-index: 2;
+      z-index: 1;
       pointer-events: none;
-      background: linear-gradient(180deg, rgba(11,17,22,0.6) 0%, transparent 16%, transparent 84%, rgba(11,17,22,0.75) 100%);
+      background: linear-gradient(90deg, rgba(11,17,22,0) 0%, rgba(11,17,22,0) 38%, rgba(11,17,22,0.35) 55%, rgba(11,17,22,0.72) 78%, rgba(11,17,22,0.92) 100%);
     }
 
     .hero .container {
       position: relative;
-      z-index: 3;
+      z-index: 2;
+      width: 100%;
       display: flex;
       justify-content: flex-end;
     }
 
     .hero-text {
-      width: min(100%, 640px);
+      width: min(100%, 600px);
       text-align: left;
     }
 
@@ -158,15 +150,12 @@
     }
 
     @media (max-width: 900px) {
-      .hero-media {
-        width: 100%;
-        opacity: 0.20;
+      .hero {
+        background-position: 24% center;
       }
 
-      .hero-media img {
-        object-position: center 22%;
-        -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 92%);
-        mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 92%);
+      .hero::before {
+        background: linear-gradient(180deg, rgba(11,17,22,0.5) 0%, rgba(11,17,22,0.35) 38%, rgba(11,17,22,0.88) 100%);
       }
 
       .hero .container {
@@ -716,6 +705,7 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
+      text-align: right;
       z-index: 3;
     }
 
@@ -797,9 +787,6 @@
 
   <main>
     <section class="hero">
-      <div class="hero-media">
-        <img src="Timinator_01.png" alt="Timeminator cyborg mascot with chrono blaster">
-      </div>
       <div class="container">
         <div class="hero-text">
           <h1>Time Tracking That Doesn't Complicate, It Clarifies</h1>
