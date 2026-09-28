@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor" role="img" aria-label="Consulting">
-  <path d="M32 24 Q32 12 42 12 L58 12 Q68 12 68 24 L68 30 L60 30 L60 24 Q60 20 56 20 L44 20 Q40 20 40 24 L40 30 L32 30 Z"/>
-  <rect x="6" y="28" width="88" height="66" rx="4"/>
-  <rect x="6" y="54" width="88" height="6" fill="#fff"/>
-  <rect x="44" y="46" width="12" height="22" rx="2" fill="#fff"/>
-  <circle cx="50" cy="57" r="3"/>
-</svg>
