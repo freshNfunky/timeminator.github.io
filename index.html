@@ -247,6 +247,100 @@
       transform: translateY(-2px);
     }
 
+    .cta-demo {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--color-accent);
+      color: #ffffff;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 200ms ease;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35);
+    }
+
+    .cta-demo:hover {
+      background: var(--color-accent-dark);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(220, 38, 38, 0.45);
+    }
+
+    /* Demo callout band */
+    .demo-cta {
+      background: var(--color-dark-bg);
+      color: var(--color-dark-text);
+    }
+
+    .demo-box {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 40px;
+    }
+
+    .demo-box .icon {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+
+    .demo-box-text { flex: 1; min-width: 0; }
+
+    .demo-box-text h2 {
+      margin-bottom: 10px;
+      color: var(--color-dark-text);
+    }
+
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 14px;
+    }
+
+    .demo-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6);
+      animation: demo-pulse 1.8s infinite;
+    }
+
+    @keyframes demo-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+    }
+
+    .demo-box-text p {
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 62ch;
+      margin-bottom: 22px;
+    }
+
+    @media (max-width: 640px) {
+      .demo-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 24px;
+      }
+      .demo-box-text p { margin-left: auto; margin-right: auto; }
+    }
+
     section {
       padding: clamp(60px, 10vw, 80px) 20px;
     }
@@ -850,6 +944,7 @@
           <h1>Time Tracking That Doesn't Complicate, It Clarifies</h1>
           <p>Self-hosted, project-based time tracker built for SMBs. No bloat, no SaaS lock-in: live timer, custom categories, budget-vs-actual analytics, and team sentiment tracking — all on your server.</p>
           <div class="hero-buttons">
+            <a class="cta-demo" href="https://demo.felixschaller.com" target="_blank" rel="noopener">Try the Demo</a>
             <button class="cta-button" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Explore Features</button>
             <a class="cta-secondary" href="https://github.com/freshNfunky/Timeminator-Community/releases" target="_blank" rel="noopener">Download</a>
           </div>
@@ -1069,6 +1164,20 @@
             <span class="icon"><img src="assets/icons/startups.png" alt="Startups" loading="lazy"></span>
             <h3>Startups</h3>
             <p>No SaaS lock-in, full data control, and cost-effective self-hosted deployment on SQLite.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-cta" id="demo">
+      <div class="container">
+        <div class="demo-box">
+          <span class="icon"><img src="assets/icons/demo.png" alt="Live Demo" loading="lazy" onerror="this.closest('.icon').style.display='none'"></span>
+          <div class="demo-box-text">
+            <span class="demo-badge">Live Demo</span>
+            <h2>See Timeminator in Action</h2>
+            <p>Explore a fully seeded instance with real projects, bookings, budget-vs-actual curves and team sentiment data. No signup, no install — just click and try.</p>
+            <a class="cta-demo" href="https://demo.felixschaller.com" target="_blank" rel="noopener">Try the Demo →</a>
           </div>
         </div>
       </div>
