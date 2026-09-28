@@ -106,29 +106,76 @@
     }
 
     .hero {
-      background: linear-gradient(135deg, var(--color-dark-bg), #1a2332);
+      background: linear-gradient(110deg, #05070c 0%, #0b1116 46%, #0d1524 100%);
       color: var(--color-dark-text);
-      padding: clamp(60px, 10vw, 100px) 20px;
-      text-align: center;
+      padding: clamp(56px, 9vw, 120px) 0;
       position: relative;
       overflow: hidden;
     }
 
-    .hero::before {
+    .hero-media {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: min(52%, 640px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 58% center;
+      -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 52%, transparent 96%);
+      mask-image: linear-gradient(90deg, #000 0%, #000 52%, transparent 96%);
+    }
+
+    .hero::after {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.15), transparent);
-      border-radius: 50%;
+      inset: 0;
+      z-index: 2;
       pointer-events: none;
+      background: linear-gradient(180deg, rgba(11,17,22,0.6) 0%, transparent 16%, transparent 84%, rgba(11,17,22,0.75) 100%);
     }
 
     .hero .container {
       position: relative;
-      z-index: 1;
+      z-index: 3;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-text {
+      width: min(100%, 640px);
+      text-align: left;
+    }
+
+    .hero-text .cta-button {
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-media {
+        width: 100%;
+        opacity: 0.20;
+      }
+
+      .hero-media img {
+        object-position: center 22%;
+        -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 92%);
+        mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 92%);
+      }
+
+      .hero .container {
+        justify-content: center;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
     }
 
     h1 {
@@ -631,10 +678,15 @@
 
   <main>
     <section class="hero">
+      <div class="hero-media">
+        <img src="Timinator_01.png" alt="Timeminator cyborg mascot with chrono blaster">
+      </div>
       <div class="container">
-        <h1>Time Tracking That Doesn't Complicate, It Clarifies</h1>
-        <p>Self-hosted, project-based time tracker built for SMBs. No bloat, no SaaS lock-in: live timer, custom categories, budget-vs-actual analytics, and team sentiment tracking — all on your server.</p>
-        <button class="cta-button" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Explore Features</button>
+        <div class="hero-text">
+          <h1>Time Tracking That Doesn't Complicate, It Clarifies</h1>
+          <p>Self-hosted, project-based time tracker built for SMBs. No bloat, no SaaS lock-in: live timer, custom categories, budget-vs-actual analytics, and team sentiment tracking — all on your server.</p>
+          <button class="cta-button" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Explore Features</button>
+        </div>
       </div>
     </section>
 
@@ -844,127 +896,6 @@
             <span class="icon">🚀</span>
             <h3>Startups</h3>
             <p>No SaaS lock-in, full data control, and cost-effective self-hosted deployment on SQLite.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="light" id="gallery">
-      <div class="container">
-        <h2>Design Assets &amp; Branding</h2>
-        <div class="gallery">
-          <div class="gallery-item">
-            <div class="gallery-item-image">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 640" style="width: 180px;">
-                <defs>
-                  <linearGradient id="chrome-g" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#f8fafc"/>
-                    <stop offset=".45" stop-color="#cbd5e1"/>
-                    <stop offset=".55" stop-color="#94a3b8"/>
-                    <stop offset="1" stop-color="#475569"/>
-                  </linearGradient>
-                  <linearGradient id="chromeSide-g" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0" stop-color="#475569"/>
-                    <stop offset=".5" stop-color="#e2e8f0"/>
-                    <stop offset="1" stop-color="#334155"/>
-                  </linearGradient>
-                  <linearGradient id="leather-g" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#111827"/>
-                    <stop offset="1" stop-color="#000"/>
-                  </linearGradient>
-                  <radialGradient id="redMuzzle-g" cx=".3" cy=".5" r=".7">
-                    <stop offset="0" stop-color="#fff5f5"/>
-                    <stop offset=".25" stop-color="#fca5a5"/>
-                    <stop offset=".6" stop-color="#dc2626"/>
-                    <stop offset="1" stop-color="#7f1d1d" stop-opacity="0"/>
-                  </radialGradient>
-                  <filter id="softGlow-g" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="4" result="blur"/>
-                    <feMerge>
-                      <feMergeNode in="blur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                </defs>
-                <g id="head-g" transform="translate(240,180)">
-                  <circle r="128" fill="url(#chrome-g)"/>
-                  <circle r="120" fill="#0f172a"/>
-                  <g id="ticks-g">
-                    <rect x="-1.4" y="-100" width="2.8" height="10" fill="#0f172a" transform="rotate(0)"/>
-                    <rect x="-1.4" y="-100" width="2.8" height="10" fill="#0f172a" transform="rotate(90)"/>
-                    <rect x="-1.4" y="-100" width="2.8" height="10" fill="#0f172a" transform="rotate(180)"/>
-                    <rect x="-1.4" y="-100" width="2.8" height="10" fill="#0f172a" transform="rotate(270)"/>
-                  </g>
-                  <circle r="6" fill="#0f172a" cx="0" cy="0"/>
-                  <circle r="2.5" fill="#dc2626" cx="0" cy="0"/>
-                </g>
-              </svg>
-            </div>
-            <div class="gallery-item-label">Mascot – Cyborg Chronometer</div>
-          </div>
-
-          <div class="gallery-item">
-            <div class="gallery-item-image">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" style="width: 200px;">
-                <defs>
-                  <linearGradient id="chrome-l" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#e2e8f0"/>
-                    <stop offset=".08" stop-color="#f8fafc"/>
-                    <stop offset=".32" stop-color="#cbd5e1"/>
-                    <stop offset=".48" stop-color="#334155"/>
-                    <stop offset=".52" stop-color="#1e293b"/>
-                    <stop offset=".68" stop-color="#64748b"/>
-                    <stop offset=".85" stop-color="#f1f5f9"/>
-                    <stop offset="1" stop-color="#334155"/>
-                  </linearGradient>
-                </defs>
-                <text x="700" y="330" text-anchor="middle" font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif" font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed" stroke="#0f172a" stroke-width="10" fill="none" style="paint-order:stroke;"/>
-                <text x="700" y="330" text-anchor="middle" font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif" font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed" fill="url(#chrome-l)">TIMEMINATOR</text>
-              </svg>
-            </div>
-            <div class="gallery-item-label">Logo Design – Main Wordmark</div>
-          </div>
-
-          <div class="gallery-item">
-            <div class="gallery-item-image">
-              <img src="Timinator_male_pose01.png" alt="Male Character Pose 1" style="max-height: 260px; width: auto;">
-            </div>
-            <div class="gallery-item-label">Character – Male Pose 1</div>
-          </div>
-
-          <div class="gallery-item">
-            <div class="gallery-item-image">
-              <img src="Timinator_female_pose01.png" alt="Female Character Pose 1" style="max-height: 260px; width: auto;">
-            </div>
-            <div class="gallery-item-label">Character – Female Pose 1</div>
-          </div>
-
-          <div class="gallery-item">
-            <div class="gallery-item-image">
-              <img src="Timinator_couple_pose01.png" alt="Team Illustration" style="max-height: 260px; width: auto;">
-            </div>
-            <div class="gallery-item-label">Team Illustration – Couple</div>
-          </div>
-
-          <div class="gallery-item">
-            <div class="gallery-item-image">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" style="width: 200px;">
-                <defs>
-                  <linearGradient id="chrome-alt" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#e2e8f0"/>
-                    <stop offset=".08" stop-color="#f8fafc"/>
-                    <stop offset=".32" stop-color="#cbd5e1"/>
-                    <stop offset=".48" stop-color="#334155"/>
-                    <stop offset=".52" stop-color="#1e293b"/>
-                    <stop offset=".68" stop-color="#64748b"/>
-                    <stop offset=".85" stop-color="#f1f5f9"/>
-                    <stop offset="1" stop-color="#334155"/>
-                  </linearGradient>
-                </defs>
-                <text x="700" y="330" text-anchor="middle" font-family="'Impact','Arial Narrow Bold','Bebas Neue','Oswald','Anton',sans-serif" font-size="230" font-weight="900" letter-spacing="6" font-stretch="condensed" fill="url(#chrome-alt)">TIMEMINATOR</text>
-              </svg>
-            </div>
-            <div class="gallery-item-label">Logo Design – Alternative</div>
           </div>
         </div>
       </div>
