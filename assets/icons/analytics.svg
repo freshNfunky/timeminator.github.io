@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor" role="img" aria-label="Budget vs Actual Analytics">
+  <rect x="10" y="52" width="18" height="40" rx="3"/>
+  <rect x="30" y="34" width="18" height="58" rx="3"/>
+  <rect x="52" y="60" width="18" height="32" rx="3"/>
+  <rect x="72" y="20" width="18" height="72" rx="3"/>
+  <rect x="8" y="46" width="22" height="4" rx="1" fill="#fff"/>
+  <rect x="50" y="52" width="22" height="4" rx="1" fill="#fff"/>
+</svg>

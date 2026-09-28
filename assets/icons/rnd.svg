@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor" role="img" aria-label="R and D Teams">
+  <rect x="36" y="4" width="28" height="8" rx="2"/>
+  <rect x="42" y="12" width="16" height="26"/>
+  <path d="M28 38 L72 38 L92 90 Q92 94 88 94 L12 94 Q8 94 8 90 Z"/>
+  <path d="M8 90 L92 90 L92 94 Q92 94 88 94 L12 94 Q8 94 8 90 Z" fill="#fff" opacity="0"/>
+  <circle cx="42" cy="80" r="6" fill="#fff"/>
+  <circle cx="60" cy="72" r="4" fill="#fff"/>
+  <circle cx="52" cy="60" r="3" fill="#fff"/>
+  <circle cx="68" cy="82" r="3" fill="#fff"/>
+</svg>
