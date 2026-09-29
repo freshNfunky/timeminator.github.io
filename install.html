@@ -1017,11 +1017,11 @@
       <div class="container" style="max-width:780px">
         <h2 style="text-align:center">Request a Pro Quote</h2>
         <p style="text-align:center;max-width:600px;margin:0 auto;color:rgba(255,255,255,0.8)">Pro is licensed to fit your team — monthly or annual billing, per user or per instance. Tell us about your setup and we'll send a tailored quote.</p>
-        <form class="quote-form" action="https://formsubmit.co/inquiry@felixschaller.com" method="POST">
-          <input type="hidden" name="_subject" value="Timeminator Pro – Quote Request">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="true">
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY">
+          <input type="hidden" name="subject" value="Timeminator Pro – Quote Request">
+          <input type="hidden" name="from_name" value="Timeminator Landing Page">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <div>
             <label for="q-name">Name</label>
             <input id="q-name" type="text" name="name" required placeholder="Jane Doe">
@@ -1061,7 +1061,7 @@
           <div class="full">
             <button type="submit" class="cta-quote">Send Request</button>
           </div>
-          <p class="full form-note">By submitting, your details are sent via FormSubmit.co to deliver this email to us. See our <a href="datenschutz.html" style="color:inherit;text-decoration:underline">privacy policy</a> for how your data is processed.</p>
+          <p class="full form-note">By submitting, your details are sent via Web3Forms to deliver this email to us. See our <a href="datenschutz.html" style="color:inherit;text-decoration:underline">privacy policy</a> for how your data is processed.</p>
         </form>
       </div>
     </section>
@@ -1197,13 +1197,14 @@
         btn.disabled = true;
         btn.textContent = 'Sending…';
         status.className = 'full form-status';
-        fetch('https://formsubmit.co/ajax/inquiry@felixschaller.com', {
+        fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Accept': 'application/json' },
           body: new FormData(form)
         })
           .then(function (r) { return r.json(); })
-          .then(function () {
+          .then(function (data) {
+            if (!data.success) throw new Error(data.message || 'failed');
             status.textContent = 'Thanks — your request has been sent. We’ll get back to you shortly.';
             status.className = 'full form-status ok';
             form.reset();
