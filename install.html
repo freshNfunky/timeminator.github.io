@@ -379,6 +379,165 @@
       font-weight: 700;
     }
 
+    /* Editions */
+    .editions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .editions { grid-template-columns: 1fr; }
+    }
+
+    .edition {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(155deg, #ffffff 0%, #eaeef3 100%);
+      border: 1px solid var(--color-divider);
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+    }
+
+    .edition.pro {
+      border-color: var(--color-accent);
+      box-shadow: 0 10px 32px rgba(220, 38, 38, 0.14);
+    }
+
+    .edition-badge {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: var(--color-accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .edition h3 {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .edition-price {
+      font-family: var(--mono, monospace);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-accent);
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .edition p {
+      color: var(--color-text-light);
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .edition .cta-button,
+    .edition .cta-quote {
+      width: 100%;
+      text-align: center;
+    }
+
+    .cta-quote {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--color-accent);
+      color: #fff;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 200ms ease;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35);
+    }
+
+    .cta-quote:hover {
+      background: var(--color-accent-dark);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(220, 38, 38, 0.45);
+    }
+
+    /* Quote form */
+    .quote-form {
+      max-width: 640px;
+      margin: 24px auto 0;
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .quote-form .full { grid-column: 1 / -1; }
+
+    .quote-form label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 6px;
+    }
+
+    .quote-form input,
+    .quote-form select,
+    .quote-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .quote-form input::placeholder,
+    .quote-form textarea::placeholder { color: rgba(255, 255, 255, 0.4); }
+
+    .quote-form input:focus,
+    .quote-form select:focus,
+    .quote-form textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .quote-form option { color: #111; }
+
+    .quote-form textarea { resize: vertical; min-height: 110px; }
+
+    .quote-form .cta-quote { margin-top: 4px; }
+
+    .form-note {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .form-status {
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 14px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .form-status.ok { display: block; background: rgba(16, 185, 129, 0.15); color: #6ee7b7; }
+    .form-status.err { display: block; background: rgba(220, 38, 38, 0.15); color: #fca5a5; }
+
+    @media (max-width: 560px) {
+      .quote-form { grid-template-columns: 1fr; }
+    }
+
     .partial {
       color: var(--color-warning);
       font-weight: 700;
@@ -807,6 +966,106 @@
       </div>
     </section>
 
+    <section class="light" id="editions">
+      <div class="container">
+        <h2>Community vs. Pro</h2>
+        <p style="max-width:660px;margin:0;color:var(--color-text-light)">Timeminator comes in two editions. Community is free and open source (MIT). Pro adds the planning, billing and integration modules for teams that run their full workflow on it.</p>
+
+        <div class="editions">
+          <div class="edition">
+            <h3>Community</h3>
+            <div class="edition-price">Free · MIT License</div>
+            <p>The complete time-tracking core: track, structure and analyze time, with users, roles and permissions. Self-hosted on SQLite.</p>
+            <a class="cta-button" href="https://github.com/freshNfunky/Timeminator-Community/releases" target="_blank" rel="noopener">Download</a>
+          </div>
+          <div class="edition pro">
+            <span class="edition-badge">For teams</span>
+            <h3>Pro</h3>
+            <div class="edition-price">License key · Custom quote</div>
+            <p>Everything in Community, plus planning &amp; budgets, project reports, offers, invoices, accounting connectors and a persistent MySQL/MariaDB database.</p>
+            <a class="cta-quote" href="#quote">Get Quote</a>
+          </div>
+        </div>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Module</th>
+              <th style="text-align:center">Community</th>
+              <th style="text-align:center">Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Time tracking (live timer + manual entries)</td><td style="text-align:center" class="check">✓</td><td style="text-align:center" class="check">✓</td></tr>
+            <tr><td>Structure (clients, projects, tasks)</td><td style="text-align:center" class="check">✓</td><td style="text-align:center" class="check">✓</td></tr>
+            <tr><td>Statistics (hours per project &amp; client, time series, 2-group comparison, audit view)</td><td style="text-align:center" class="check">✓</td><td style="text-align:center" class="check">✓</td></tr>
+            <tr><td>Login, roles &amp; permissions</td><td style="text-align:center" class="check">✓</td><td style="text-align:center" class="check">✓</td></tr>
+            <tr><td>Import / Export</td><td style="text-align:center" class="check">✓</td><td style="text-align:center" class="check">✓</td></tr>
+            <tr><td>Web installer, update check, registration</td><td style="text-align:center" class="check">✓</td><td style="text-align:center" class="check">✓</td></tr>
+            <tr><td>Planning, budget &amp; progress</td><td style="text-align:center" class="x">✗</td><td style="text-align:center" class="check">✓</td></tr>
+            <tr><td>Project report</td><td style="text-align:center" class="x">✗</td><td style="text-align:center" class="check">✓</td></tr>
+            <tr><td>Offers / quote calculation (incl. building blocks)</td><td style="text-align:center" class="x">✗</td><td style="text-align:center" class="check">✓</td></tr>
+            <tr><td>Invoices (number ranges, templates)</td><td style="text-align:center" class="x">✗</td><td style="text-align:center" class="check">✓</td></tr>
+            <tr><td>Accounting connectors (lexoffice, extensible)</td><td style="text-align:center" class="x">✗</td><td style="text-align:center" class="check">✓</td></tr>
+            <tr><td>Persistent MySQL/MariaDB database</td><td style="text-align:center" class="x">✗</td><td style="text-align:center" class="check">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="dark" id="quote">
+      <div class="container" style="max-width:780px">
+        <h2 style="text-align:center">Request a Pro Quote</h2>
+        <p style="text-align:center;max-width:600px;margin:0 auto;color:rgba(255,255,255,0.8)">Pro is licensed to fit your team — monthly or annual billing, per user or per instance. Tell us about your setup and we'll send a tailored quote.</p>
+        <form class="quote-form" action="https://formsubmit.co/inquiry@felixschaller.com" method="POST">
+          <input type="hidden" name="_subject" value="Timeminator Pro – Quote Request">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <div>
+            <label for="q-name">Name</label>
+            <input id="q-name" type="text" name="name" required placeholder="Jane Doe">
+          </div>
+          <div>
+            <label for="q-email">Email</label>
+            <input id="q-email" type="email" name="email" required placeholder="you@company.com">
+          </div>
+          <div>
+            <label for="q-company">Company</label>
+            <input id="q-company" type="text" name="company" placeholder="Acme GmbH">
+          </div>
+          <div>
+            <label for="q-team">Team size</label>
+            <select id="q-team" name="team_size">
+              <option value="">Select…</option>
+              <option>1–5</option>
+              <option>6–15</option>
+              <option>16–50</option>
+              <option>50+</option>
+            </select>
+          </div>
+          <div class="full">
+            <label for="q-billing">Preferred billing</label>
+            <select id="q-billing" name="billing_preference">
+              <option value="">No preference yet</option>
+              <option>Monthly</option>
+              <option>Annual</option>
+              <option>Not sure — advise me</option>
+            </select>
+          </div>
+          <div class="full">
+            <label for="q-msg">Message</label>
+            <textarea id="q-msg" name="message" placeholder="Which modules matter most, timeline, hosting, number of users…"></textarea>
+          </div>
+          <div class="full form-status" id="q-status" role="status" aria-live="polite"></div>
+          <div class="full">
+            <button type="submit" class="cta-quote">Send Request</button>
+          </div>
+          <p class="full form-note">By submitting, your details are sent via FormSubmit.co to deliver this email to us. See our privacy policy for how your data is processed.</p>
+        </form>
+      </div>
+    </section>
+
     <section class="light" id="download">
       <div class="container">
         <h2>Download</h2>
@@ -924,5 +1183,40 @@
       <a class="fs-credit" href="https://felixschaller.com" target="_blank" rel="noopener">developed by <img src="fs-logo.svg" alt="FelixSchallerCOM"></a>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var form = document.querySelector('.quote-form');
+      if (!form) return;
+      var status = document.getElementById('q-status');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var original = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        status.className = 'full form-status';
+        fetch('https://formsubmit.co/ajax/inquiry@felixschaller.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        })
+          .then(function (r) { return r.json(); })
+          .then(function () {
+            status.textContent = 'Thanks — your request has been sent. We’ll get back to you shortly.';
+            status.className = 'full form-status ok';
+            form.reset();
+          })
+          .catch(function () {
+            status.textContent = 'Something went wrong. Please email inquiry@felixschaller.com directly.';
+            status.className = 'full form-status err';
+          })
+          .finally(function () {
+            btn.disabled = false;
+            btn.textContent = original;
+          });
+      });
+    })();
+  </script>
 </body>
 </html>
