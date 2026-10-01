@@ -468,6 +468,67 @@
       box-shadow: 0 8px 20px rgba(220, 38, 38, 0.45);
     }
 
+    /* Pricing card */
+    .pricing-card {
+      max-width: 420px;
+      margin: 32px auto 0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-accent);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 10px 32px rgba(220, 38, 38, 0.14);
+    }
+
+    .pricing-amount {
+      font-family: 'Poppins', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .pricing-amount span {
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      margin-left: 6px;
+    }
+
+    .pricing-sub {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.65);
+      margin-top: 4px;
+      margin-bottom: 24px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .pricing-features li {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.85);
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .pricing-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--color-success);
+      font-weight: 700;
+    }
+
+    .pricing-note {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
     /* Quote form */
     .quote-form {
       max-width: 640px;
@@ -981,9 +1042,9 @@
           <div class="edition pro">
             <span class="edition-badge">For teams</span>
             <h3>Pro</h3>
-            <div class="edition-price">License key · Custom quote</div>
+            <div class="edition-price">License key · €299 one-time</div>
             <p>Everything in Community, plus planning &amp; budgets, project reports, offers, invoices, accounting connectors and a persistent MySQL/MariaDB database.</p>
-            <a class="cta-quote" href="#quote">Get Quote</a>
+            <a class="cta-quote" href="#quote">Only €299</a>
           </div>
         </div>
 
@@ -1015,11 +1076,26 @@
 
     <section class="dark" id="quote">
       <div class="container" style="max-width:780px">
-        <h2 style="text-align:center">Request a Pro Quote</h2>
-        <p style="text-align:center;max-width:600px;margin:0 auto;color:rgba(255,255,255,0.8)">Pro is licensed to fit your team — monthly or annual billing, per user or per instance. Tell us about your setup and we'll send a tailored quote.</p>
+        <h2 style="text-align:center">Timeminator Pro Pricing</h2>
+        <p style="text-align:center;max-width:600px;margin:0 auto;color:rgba(255,255,255,0.8)">One license, one price — no per-user fees, no subscription required.</p>
+
+        <div class="pricing-card">
+          <div class="pricing-amount">€299 <span>one-time</span></div>
+          <div class="pricing-sub">per installation · unlimited users · 12 months of updates included</div>
+          <ul class="pricing-features">
+            <li>All Pro modules: planning &amp; budgets, offers, invoices, accounting connectors</li>
+            <li>Persistent MySQL/MariaDB database</li>
+            <li>Self-hosted — your server, your data</li>
+            <li>Optional update &amp; support renewal after year 1: €79/year</li>
+          </ul>
+          <p class="pricing-note">Try before you buy: without a license key, Pro runs as a free sandbox demo.</p>
+        </div>
+
+        <h3 style="text-align:center;margin-top:40px;margin-bottom:8px">Get a License Key</h3>
+        <p style="text-align:center;max-width:600px;margin:0 auto;color:rgba(255,255,255,0.8)">Tell us a bit about your setup and we'll get back to you with payment details and your license key.</p>
         <form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="7d0523a0-a1b5-4671-9625-c5a837279cf3">
-          <input type="hidden" name="subject" value="Timeminator Pro – Quote Request">
+          <input type="hidden" name="subject" value="Timeminator Pro – License Request (€299)">
           <input type="hidden" name="from_name" value="Timeminator Landing Page">
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <div>
@@ -1045,21 +1121,12 @@
             </select>
           </div>
           <div class="full">
-            <label for="q-billing">Preferred billing</label>
-            <select id="q-billing" name="billing_preference">
-              <option value="">No preference yet</option>
-              <option>Monthly</option>
-              <option>Annual</option>
-              <option>Not sure — advise me</option>
-            </select>
-          </div>
-          <div class="full">
             <label for="q-msg">Message</label>
-            <textarea id="q-msg" name="message" placeholder="Which modules matter most, timeline, hosting, number of users…"></textarea>
+            <textarea id="q-msg" name="message" placeholder="Hosting setup, timeline, anything else we should know…"></textarea>
           </div>
           <div class="full form-status" id="q-status" role="status" aria-live="polite"></div>
           <div class="full">
-            <button type="submit" class="cta-quote">Send Request</button>
+            <button type="submit" class="cta-quote">Request License Key</button>
           </div>
           <p class="full form-note">By submitting, your details are sent via Web3Forms to deliver this email to us. See our <a href="datenschutz.html" style="color:inherit;text-decoration:underline">privacy policy</a> for how your data is processed.</p>
         </form>
