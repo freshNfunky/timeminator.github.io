@@ -529,6 +529,76 @@
       color: rgba(255, 255, 255, 0.5);
     }
 
+    .pricing-tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 760px) {
+      .pricing-tiers { grid-template-columns: 1fr; }
+    }
+
+    .pricing-tier {
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .pricing-tier.featured {
+      border-color: var(--color-accent);
+      box-shadow: 0 10px 32px rgba(220, 38, 38, 0.16);
+    }
+
+    .tier-badge {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-accent);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .tier-name {
+      font-weight: 700;
+      font-size: 17px;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .tier-seats {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+    }
+
+    .tier-amount {
+      font-family: 'Poppins', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .tier-amount span {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 4px;
+    }
+
     /* Quote form */
     .quote-form {
       max-width: 640px;
@@ -1013,6 +1083,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#features">Features</a></li>
           <li><a href="index.html#comparison">Compare</a></li>
+          <li><a href="#quote">Pricing</a></li>
           <li><a href="https://github.com/freshNfunky/Timeminator-Community" target="_blank">GitHub</a></li>
         </ul>
       </nav>
@@ -1042,9 +1113,9 @@
           <div class="edition pro">
             <span class="edition-badge">For teams</span>
             <h3>Pro</h3>
-            <div class="edition-price">License key · €299 one-time</div>
+            <div class="edition-price">Starting at €299 one-time — depends on team size</div>
             <p>Everything in Community, plus planning &amp; budgets, project reports, offers, invoices, accounting connectors and a persistent MySQL/MariaDB database.</p>
-            <a class="cta-quote" href="#quote">Only €299</a>
+            <a class="cta-quote" href="#quote">See full pricing →</a>
           </div>
         </div>
 
@@ -1077,25 +1148,41 @@
     <section class="dark" id="quote">
       <div class="container" style="max-width:780px">
         <h2 style="text-align:center">Timeminator Pro Pricing</h2>
-        <p style="text-align:center;max-width:600px;margin:0 auto;color:rgba(255,255,255,0.8)">One license, one price — no per-user fees, no subscription required.</p>
+        <p style="text-align:center;max-width:620px;margin:0 auto;color:rgba(255,255,255,0.8)">One-time license per installation, priced by team size — no per-user SaaS fees, no mandatory subscription.</p>
 
-        <div class="pricing-card">
-          <div class="pricing-amount">€299 <span>one-time</span></div>
-          <div class="pricing-sub">per installation · unlimited users · 12 months of updates included</div>
-          <ul class="pricing-features">
-            <li>All Pro modules: planning &amp; budgets, offers, invoices, accounting connectors</li>
-            <li>Persistent MySQL/MariaDB database</li>
-            <li>Self-hosted — your server, your data</li>
-            <li>Optional update &amp; support renewal after year 1: €79/year</li>
-          </ul>
-          <p class="pricing-note">Try before you buy: without a license key, Pro runs as a free sandbox demo.</p>
+        <div class="pricing-tiers">
+          <div class="pricing-tier">
+            <div class="tier-name">Starter</div>
+            <div class="tier-seats">up to 5 users</div>
+            <div class="tier-amount">€299 <span>one-time</span></div>
+          </div>
+          <div class="pricing-tier featured">
+            <span class="tier-badge">Most popular</span>
+            <div class="tier-name">Team</div>
+            <div class="tier-seats">up to 20 users</div>
+            <div class="tier-amount">€799 <span>one-time</span></div>
+          </div>
+          <div class="pricing-tier">
+            <div class="tier-name">Business</div>
+            <div class="tier-seats">unlimited users</div>
+            <div class="tier-amount">€1,399 <span>one-time</span></div>
+          </div>
         </div>
+
+        <ul class="pricing-features" style="max-width:560px;margin:28px auto 0">
+          <li>All Pro modules: planning &amp; budgets, offers, invoices, accounting connectors</li>
+          <li>Persistent MySQL/MariaDB database</li>
+          <li>Self-hosted — your server, your data</li>
+          <li>12 months of updates included · optional renewal €79/year</li>
+        </ul>
+        <p class="pricing-note" style="text-align:center;margin-top:14px">Try before you buy: without a license key, Pro runs as a free sandbox demo.</p>
+        <p style="text-align:center;margin-top:18px"><a href="assets/downloads/timeminator-pro-pricing.pdf" target="_blank" rel="noopener" style="color:var(--color-accent);font-weight:600;font-size:14px;text-decoration:underline">↓ Download full price list (PDF)</a></p>
 
         <h3 style="text-align:center;margin-top:40px;margin-bottom:8px">Get a License Key</h3>
         <p style="text-align:center;max-width:600px;margin:0 auto;color:rgba(255,255,255,0.8)">Tell us a bit about your setup and we'll get back to you with payment details and your license key.</p>
         <form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="7d0523a0-a1b5-4671-9625-c5a837279cf3">
-          <input type="hidden" name="subject" value="Timeminator Pro – License Request (€299)">
+          <input type="hidden" name="subject" value="Timeminator Pro – License Request">
           <input type="hidden" name="from_name" value="Timeminator Landing Page">
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <div>
