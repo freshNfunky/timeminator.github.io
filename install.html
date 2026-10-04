@@ -1054,6 +1054,49 @@
         padding: 12px 8px;
       }
     }
+
+    /* Product screenshot gallery */
+    .shots-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .shot {
+      margin: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .shot a { display: block; line-height: 0; }
+    .shot img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .shot figcaption {
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--color-text-light);
+      padding: 12px 14px;
+    }
+    @media (max-width: 760px) {
+      .shots-grid { grid-template-columns: 1fr; gap: 18px; }
+    }
+
+    /* Boxed "try as demo" note under the pricing tiers */
+    .demo-note {
+      max-width: 460px;
+      margin: 24px auto 0;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+    .demo-note .pricing-note { text-wrap: balance; }
   </style>
 </head>
 <body>
@@ -1098,6 +1141,39 @@
       </div>
     </section>
 
+    <section class="light" id="screenshots">
+      <div class="container">
+        <h2>See Timeminator in Action</h2>
+        <p style="max-width:660px;margin:0;color:var(--color-text-light)">A quick tour of the self-hosted app — from the live timer on the dashboard to analytics and the full project structure.</p>
+        <div class="shots-grid">
+          <figure class="shot">
+            <a href="assets/screenshots/01-dashboard.png" target="_blank" rel="noopener"><img src="assets/screenshots/01-dashboard.png" alt="Timeminator dashboard with live timer and hour totals" loading="lazy" width="2880" height="1800"></a>
+            <figcaption>Dashboard — live timer, today / week / month hours and your latest entries.</figcaption>
+          </figure>
+          <figure class="shot">
+            <a href="assets/screenshots/03-statistik.png" target="_blank" rel="noopener"><img src="assets/screenshots/03-statistik.png" alt="Statistics with donut chart, weekly bars and totals" loading="lazy" width="2880" height="1800"></a>
+            <figcaption>Statistics — hours by project, weekly trend and group comparison.</figcaption>
+          </figure>
+          <figure class="shot">
+            <a href="assets/screenshots/02-zeiteintraege.png" target="_blank" rel="noopener"><img src="assets/screenshots/02-zeiteintraege.png" alt="Filterable list of time entries with durations and totals" loading="lazy" width="2880" height="1800"></a>
+            <figcaption>Time entries — a filterable list with durations and running totals.</figcaption>
+          </figure>
+          <figure class="shot">
+            <a href="assets/screenshots/05-projekte.png" target="_blank" rel="noopener"><img src="assets/screenshots/05-projekte.png" alt="Project management with per-client projects" loading="lazy" width="2880" height="1800"></a>
+            <figcaption>Projects — per-client projects with codes and colors.</figcaption>
+          </figure>
+          <figure class="shot">
+            <a href="assets/screenshots/07-aufgaben.png" target="_blank" rel="noopener"><img src="assets/screenshots/07-aufgaben.png" alt="Task management per project and work package" loading="lazy" width="2880" height="1800"></a>
+            <figcaption>Tasks — typed activities per project and work package.</figcaption>
+          </figure>
+          <figure class="shot">
+            <a href="assets/screenshots/06-arbeitspakete.png" target="_blank" rel="noopener"><img src="assets/screenshots/06-arbeitspakete.png" alt="Work packages between project and task" loading="lazy" width="2880" height="1800"></a>
+            <figcaption>Work packages — an optional layer between project and task.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section class="light" id="editions">
       <div class="container">
         <h2>Community vs. Pro</h2>
@@ -1108,14 +1184,15 @@
             <h3>Community</h3>
             <div class="edition-price">Free · MIT License</div>
             <p>The complete time-tracking core: track, structure and analyze time, with users, roles and permissions. Self-hosted on SQLite.</p>
-            <a class="cta-button" href="https://github.com/freshNfunky/Timeminator-Community/releases" target="_blank" rel="noopener">Download</a>
+            <a class="cta-button" href="https://github.com/freshNfunky/Timeminator-Community/releases/latest" target="_blank" rel="noopener">Download</a>
           </div>
           <div class="edition pro">
             <span class="edition-badge">For teams</span>
             <h3>Pro</h3>
             <div class="edition-price">Starting at €299 one-time — depends on team size</div>
             <p>Everything in Community, plus planning &amp; budgets, project reports, offers, invoices, accounting connectors and a persistent MySQL/MariaDB database.</p>
-            <a class="cta-quote" href="#quote">See full pricing →</a>
+            <a class="cta-button" href="https://demo.felixschaller.com" target="_blank" rel="noopener">Try Pro as demo →</a>
+            <div style="margin-top:10px"><a class="cta-quote" href="#quote">See full pricing →</a></div>
           </div>
         </div>
 
@@ -1175,7 +1252,10 @@
           <li>Self-hosted — your server, your data</li>
           <li>12 months of updates included · optional renewal €79/year</li>
         </ul>
-        <p class="pricing-note" style="text-align:center;margin-top:14px">Try before you buy: without a license key, Pro runs as a free sandbox demo.</p>
+        <div class="demo-note">
+          <p class="pricing-note" style="margin:0">Try before you buy — without a license key, Timeminator Pro runs as a free sandbox demo.</p>
+          <a class="cta-button" href="https://demo.felixschaller.com" target="_blank" rel="noopener" style="margin-top:14px">Try Pro as a live demo →</a>
+        </div>
         <p style="text-align:center;margin-top:18px"><a href="assets/downloads/timeminator-pro-pricing.pdf" target="_blank" rel="noopener" style="color:var(--color-accent);font-weight:600;font-size:14px;text-decoration:underline">↓ Download full price list (PDF)</a></p>
 
         <h3 style="text-align:center;margin-top:40px;margin-bottom:8px">Get a License Key</h3>
@@ -1228,7 +1308,7 @@
             <span class="icon">📦</span>
             <h3>Latest Release</h3>
             <p>Grab the current stable build as a ready-to-deploy archive from GitHub Releases.</p>
-            <a class="cta-button" style="margin-top:16px" href="https://github.com/freshNfunky/Timeminator-Community/releases" target="_blank">Download Release</a>
+            <a class="cta-button" style="margin-top:16px" href="https://github.com/freshNfunky/Timeminator-Community/releases/latest" target="_blank">Download Release</a>
           </div>
           <div class="card">
             <span class="icon">🧩</span>
