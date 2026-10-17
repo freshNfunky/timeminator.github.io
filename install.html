@@ -1062,35 +1062,38 @@
       }
     }
 
-    /* Product screenshot gallery */
-    .shots-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 32px;
+    /* Product screenshot showcase (flagship views) */
+    .showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      margin-top: 40px;
     }
-    .shot {
+    .showcase-item { margin: 0; }
+    .showcase-text { max-width: 720px; margin-bottom: 20px; }
+    .showcase-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin: 0 0 8px;
+    }
+    .showcase-item h3 { font-size: 22px; line-height: 1.2; margin: 0 0 8px; }
+    .showcase-item p { margin: 0; color: var(--color-text-light); line-height: 1.55; }
+    .showcase-figure {
       margin: 0;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #0b1116;
+      border: 1px solid var(--color-divider);
+      box-shadow: 0 20px 50px rgba(16, 20, 24, 0.14);
     }
-    .shot a { display: block; line-height: 0; }
-    .shot img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .shot figcaption {
-      font-size: 13px;
-      line-height: 1.4;
-      color: var(--color-text-light);
-      padding: 12px 14px;
-    }
+    .showcase-figure a { display: block; line-height: 0; }
+    .showcase-figure img { width: 100%; height: auto; display: block; }
     @media (max-width: 760px) {
-      .shots-grid { grid-template-columns: 1fr; gap: 18px; }
+      .showcase { gap: 40px; }
+      .showcase-item h3 { font-size: 19px; }
     }
 
     /* Boxed "try as demo" note under the pricing tiers */
@@ -1151,31 +1154,37 @@
     <section class="light" id="screenshots">
       <div class="container">
         <h2>See Timeminator in Action</h2>
-        <p style="max-width:660px;margin:0;color:var(--color-text-light)">A quick tour of the self-hosted app — from the live timer on the dashboard to analytics and the full project structure.</p>
-        <div class="shots-grid">
-          <figure class="shot">
-            <a href="assets/screenshots/01-dashboard.png" target="_blank" rel="noopener"><img src="assets/screenshots/01-dashboard.png" alt="Timeminator dashboard with live timer and hour totals" loading="lazy" width="2880" height="1800"></a>
-            <figcaption>Dashboard — live timer, today / week / month hours and your latest entries.</figcaption>
+        <p style="max-width:680px;margin:0;color:var(--color-text-light)">The three views teams rely on most — a project cockpit with burn-up and forecasts, a drag-to-create calendar, and flexible analytics.</p>
+        <div class="showcase">
+          <figure class="showcase-item">
+            <div class="showcase-text">
+              <p class="showcase-eyebrow">01 — Project cockpit</p>
+              <h3>Know when a project drifts over plan</h3>
+              <p>A burn-up of cumulative hours against target, with deadline and delay forecasts, an over-plan flag, and a timestamped project tracker — so budget, time and progress stay on one screen.</p>
+            </div>
+            <div class="showcase-figure">
+              <a href="assets/screenshots/cockpit-burnup.png" target="_blank" rel="noopener"><img src="assets/screenshots/cockpit-burnup.png" alt="Project cockpit with burn-up chart, deadline and delay forecast, and over-plan indicator" loading="lazy" width="2880" height="1520"></a>
+            </div>
           </figure>
-          <figure class="shot">
-            <a href="assets/screenshots/03-statistik.png" target="_blank" rel="noopener"><img src="assets/screenshots/03-statistik.png" alt="Statistics with donut chart, weekly bars and totals" loading="lazy" width="2880" height="1800"></a>
-            <figcaption>Statistics — hours by project, weekly trend and group comparison.</figcaption>
+          <figure class="showcase-item">
+            <div class="showcase-text">
+              <p class="showcase-eyebrow">02 — Calendar</p>
+              <h3>Plan and book your week at a glance</h3>
+              <p>A drag-to-create weekly calendar with per-entry times, public holidays and running daily totals — turn an external appointment into a booking with a single click.</p>
+            </div>
+            <div class="showcase-figure">
+              <a href="assets/screenshots/calendar-week.png" target="_blank" rel="noopener"><img src="assets/screenshots/calendar-week.png" alt="Weekly time-entry calendar with bookings across projects, a public holiday marker and daily totals" loading="lazy" width="2880" height="2400"></a>
+            </div>
           </figure>
-          <figure class="shot">
-            <a href="assets/screenshots/02-zeiteintraege.png" target="_blank" rel="noopener"><img src="assets/screenshots/02-zeiteintraege.png" alt="Filterable list of time entries with durations and totals" loading="lazy" width="2880" height="1800"></a>
-            <figcaption>Time entries — a filterable list with durations and running totals.</figcaption>
-          </figure>
-          <figure class="shot">
-            <a href="assets/screenshots/05-projekte.png" target="_blank" rel="noopener"><img src="assets/screenshots/05-projekte.png" alt="Project management with per-client projects" loading="lazy" width="2880" height="1800"></a>
-            <figcaption>Projects — per-client projects with codes and colors.</figcaption>
-          </figure>
-          <figure class="shot">
-            <a href="assets/screenshots/07-aufgaben.png" target="_blank" rel="noopener"><img src="assets/screenshots/07-aufgaben.png" alt="Task management per project and work package" loading="lazy" width="2880" height="1800"></a>
-            <figcaption>Tasks — typed activities per project and work package.</figcaption>
-          </figure>
-          <figure class="shot">
-            <a href="assets/screenshots/06-arbeitspakete.png" target="_blank" rel="noopener"><img src="assets/screenshots/06-arbeitspakete.png" alt="Work packages between project and task" loading="lazy" width="2880" height="1800"></a>
-            <figcaption>Work packages — an optional layer between project and task.</figcaption>
+          <figure class="showcase-item">
+            <div class="showcase-text">
+              <p class="showcase-eyebrow">03 — Statistics</p>
+              <h3>Analyze hours any way you need</h3>
+              <p>Hours by project as a donut, a weekly time series, and flexible grouping by project, client or track over any date range.</p>
+            </div>
+            <div class="showcase-figure">
+              <a href="assets/screenshots/statistics.png" target="_blank" rel="noopener"><img src="assets/screenshots/statistics.png" alt="Statistics page with a project distribution donut and a weekly time-series bar chart" loading="lazy" width="2880" height="2176"></a>
+            </div>
           </figure>
         </div>
       </div>
