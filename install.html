@@ -1474,6 +1474,7 @@
             status.textContent = 'Thanks — your request has been sent. We’ll get back to you shortly.';
             status.className = 'full form-status ok';
             form.reset();
+            if (window._paq) { _paq.push(['trackEvent', 'Lead', 'Get Quote abgeschickt']); }
           })
           .catch(function () {
             status.textContent = 'Something went wrong. Please email inquiry@felixschaller.com directly.';
