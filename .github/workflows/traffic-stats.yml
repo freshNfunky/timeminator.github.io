@@ -1,0 +1,43 @@
+name: Traffic stats
+
+# Records repository traffic (git clones + github.com repo-page views) into a
+# long-term CSV history, because the GitHub Traffic API only keeps 14 days.
+# NOTE: this does NOT measure website visitors to timeminator.com — GitHub Pages
+# has no built-in analytics; that is tracked separately via Matomo.
+
+on:
+  schedule:
+    - cron: "17 4 * * 1" # every Monday 04:17 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write # commit the updated history
+  administration: read # required by the Traffic API
+
+concurrency:
+  group: traffic-stats
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Collect traffic
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: python3 .github/scripts/collect_traffic.py
+
+      - name: Commit updated history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/traffic-data
+          if git diff --cached --quiet; then
+            echo "No traffic changes."
+          else
+            git commit -m "chore(traffic): update stats ($(date -u +%Y-%m-%d))"
+            git push
+          fi
