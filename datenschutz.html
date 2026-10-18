@@ -931,6 +931,22 @@
       }
     }
   </style>
+    <!-- Matomo (self-hosted, cookieless) -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      _paq.push(['disableCookies']);
+      _paq.push(['setDoNotTrack', true]);
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://stats.timeminator.com/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
 </head>
 <body>
   <header>
@@ -995,13 +1011,18 @@
         <p>Für den Versand nutzen wir den Dienst Web3Forms (web3forms.com). Dabei werden die Formulardaten an Web3Forms übermittelt und von dort als E-Mail an uns weitergeleitet. Anbieter: Web3Forms (web3forms.com). Eine Übermittlung in ein Drittland außerhalb der EU/des EWR ist dabei möglich.</p>
         <p>Zweck: Bearbeitung und Beantwortung Ihrer Anfrage. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Anbahnung bzw. Durchführung eines Vertragsverhältnisses) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Kommunikation mit Interessenten). Die Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
 
-        <h3>4. Ihre Rechte</h3>
+        <h3>4. Webanalyse mit Matomo (selbst gehostet)</h3>
+        <p>Zur statistischen Auswertung der Nutzung dieser Website setzen wir die Open-Source-Software Matomo ein. Matomo wird von uns selbst gehostet (unter stats.timeminator.com auf unserem eigenen Server). Es werden keine Analysedaten an Dritte übermittelt.</p>
+        <p>Die Verarbeitung erfolgt <strong>cookiefrei</strong> – es werden keine Cookies gesetzt oder ausgelesen. Ihre IP-Adresse wird vor der Speicherung anonymisiert (Kürzung der letzten Bytes), sodass kein Rückschluss auf Ihre Person möglich ist. Eine im Browser gesetzte „Do Not Track“-Einstellung wird respektiert; in diesem Fall erfolgt keine Auswertung.</p>
+        <p>Zweck: Verständnis der Nutzung und Reichweite der Website zur bedarfsgerechten Verbesserung unseres Angebots. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer statistisch ausgewerteten, bedarfsgerechten Gestaltung der Website). Die erhobenen, anonymisierten Daten werden nach einer begrenzten Aufbewahrungsfrist gelöscht. Sie können der Auswertung jederzeit über die „Do Not Track“-Funktion Ihres Browsers widersprechen.</p>
+
+        <h3>5. Ihre Rechte</h3>
         <p>Sie haben im Rahmen der gesetzlichen Vorgaben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch (Art. 21 DSGVO). Wenden Sie sich hierfür an den oben genannten Verantwortlichen.</p>
 
-        <h3>5. Beschwerderecht</h3>
+        <h3>6. Beschwerderecht</h3>
         <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren.</p>
 
-        <p class="muted" style="margin-top:32px">Stand: September 2026</p>
+        <p class="muted" style="margin-top:32px">Stand: Oktober 2026</p>
       </div>
     </section>
   </main>
