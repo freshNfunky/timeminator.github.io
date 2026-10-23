@@ -1078,37 +1078,54 @@
     }
 
     /* Product screenshot showcase (flagship views) */
-    .showcase {
-      display: flex;
-      flex-direction: column;
-      gap: 56px;
-      margin-top: 40px;
-    }
-    .showcase-item { margin: 0; }
-    .showcase-text { max-width: 720px; margin-bottom: 20px; }
-    .showcase-eyebrow {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-accent);
-      margin: 0 0 8px;
-    }
-    .showcase-item h3 { font-size: 22px; line-height: 1.2; margin: 0 0 8px; }
-    .showcase-item p { margin: 0; color: var(--color-text-light); line-height: 1.55; }
-    .showcase-figure {
-      margin: 0;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #0b1116;
+    .pro-shots { margin-top: 40px; display: grid; grid-template-columns: 1fr; gap: 28px; }
+    .gcard {
+      margin: 0; border-radius: 14px; overflow: hidden;
+      background: var(--color-surface-light);
       border: 1px solid var(--color-divider);
-      box-shadow: 0 20px 50px rgba(16, 20, 24, 0.14);
+      box-shadow: 0 10px 30px rgba(16, 20, 24, 0.10);
+      display: flex; flex-direction: column;
     }
-    .showcase-figure a { display: block; line-height: 0; }
-    .showcase-figure img { width: 100%; height: auto; display: block; }
+    .gcard-shot {
+      display: block; position: relative; aspect-ratio: 4 / 3;
+      overflow: hidden; background: #0b1116; line-height: 0; cursor: zoom-in;
+    }
+    .gcard-shot img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      display: block; transition: transform .45s ease;
+    }
+    .gcard-shot:hover img { transform: scale(1.035); }
+    .gcard-body { padding: 16px 18px 18px; }
+    .gcard-eyebrow {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--color-accent); margin: 0 0 6px;
+    }
+    .gcard h3 { font-size: 18px; line-height: 1.2; margin: 0 0 6px; }
+    .gcard p { margin: 0; color: var(--color-text-light); line-height: 1.5; font-size: 14px; }
+    .pro-shots-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .gcard-hero { max-width: 900px; width: 100%; margin: 0 auto; }
+    .gcard-hero .gcard-body { padding: 20px 24px 22px; }
+    .gcard-hero h3 { font-size: 24px; }
+    .gcard-hero p { font-size: 15px; }
+    .gcard-hero .gcard-shot img { object-position: center 12%; }
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000; display: none;
+      align-items: center; justify-content: center;
+      background: rgba(6, 9, 12, 0.9); padding: 24px; cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 100%; max-height: 100%; width: auto; height: auto;
+      border-radius: 10px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); background: #0b1116;
+    }
+    .lightbox-close {
+      position: absolute; top: 16px; right: 22px; font-size: 32px; line-height: 1;
+      color: #fff; background: none; border: 0; cursor: pointer; opacity: .85;
+    }
     @media (max-width: 760px) {
-      .showcase { gap: 40px; }
-      .showcase-item h3 { font-size: 19px; }
+      .pro-shots-grid { grid-template-columns: 1fr; }
+      .gcard h3 { font-size: 17px; }
+      .gcard-hero h3 { font-size: 20px; }
     }
 
     /* Boxed "try as demo" note under the pricing tiers */
@@ -1185,98 +1202,106 @@
       <div class="container">
         <h2>See Timeminator in Action</h2>
         <p style="max-width:680px;margin:0;color:var(--color-text-light)">A tour of Timeminator Pro — the cockpits, calendar, analytics and billing that teams run their whole workflow on.</p>
-        <div class="showcase">
-          <figure class="showcase-item">
-            <div class="showcase-text">
-              <p class="showcase-eyebrow">01 — Dashboard</p>
-              <h3>Start the day in one place</h3>
-              <p>A live timer, today / week / month totals, a quick mood &amp; flow check-in, and your most recent entries — the home base everyone lands on.</p>
-            </div>
-            <div class="showcase-figure">
-              <a href="assets/screenshots/pro-dashboard.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-dashboard.png" alt="Dashboard: live timer, today/week/month hour totals, a mood and flow check-in and recent entries" loading="lazy" width="2960" height="2518"></a>
-            </div>
-          </figure>
-          <figure class="showcase-item">
-            <div class="showcase-text">
-              <p class="showcase-eyebrow">02 — Employee cockpit</p>
-              <h3>See where every week's hours really go</h3>
-              <p>A stacked week-by-week breakdown that sits right on each person's target line, with live overtime, remaining vacation and utilisation — the view managers and HR open first.</p>
-            </div>
-            <div class="showcase-figure">
-              <a href="assets/screenshots/pro-employee-cockpit.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-employee-cockpit.png" alt="Employee cockpit: weekly working-time distribution on the target line, plus overtime, vacation and utilisation" loading="lazy" width="2960" height="2928"></a>
-            </div>
-          </figure>
-          <figure class="showcase-item">
-            <div class="showcase-text">
-              <p class="showcase-eyebrow">03 — Project cockpit</p>
-              <h3>Catch a project drifting over plan</h3>
-              <p>Every project on one screen: booked hours vs budget, progress, deadlines and red/amber/green health flags — so time, budget and status never drift apart.</p>
-            </div>
-            <div class="showcase-figure">
-              <a href="assets/screenshots/pro-project-cockpit.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-project-cockpit.png" alt="Project cockpit: every project with booked-vs-budget, progress and health flags" loading="lazy" width="2960" height="3188"></a>
-            </div>
-          </figure>
-          <figure class="showcase-item">
-            <div class="showcase-text">
-              <p class="showcase-eyebrow">04 — Burn-up &amp; forecast</p>
+        <div class="pro-shots">
+          <figure class="gcard gcard-hero">
+            <a class="gcard-shot" href="assets/screenshots/pro-project-cockpit-detail.png" data-full="assets/screenshots/pro-project-cockpit-detail.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-project-cockpit-detail.png" alt="Project cockpit detail: burn-up chart with forecast to deadline, per-employee target-vs-actual, health checks and tracker log" loading="lazy"></a>
+            <figcaption class="gcard-body">
+              <p class="gcard-eyebrow">Flagship &middot; Project cockpit</p>
               <h3>Will this project land on budget?</h3>
-              <p>A burn-up of cost against the budget target with a forecast fan to the deadline, a target-vs-actual matrix per employee, health checks, and a full tracker of progress, budget changes and payments.</p>
-            </div>
-            <div class="showcase-figure">
-              <a href="assets/screenshots/pro-project-cockpit-detail.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-project-cockpit-detail.png" alt="Project cockpit detail: burn-up chart with forecast to deadline, per-employee target-vs-actual, health checks and tracker log" loading="lazy" width="2960" height="5128"></a>
-            </div>
+              <p>A burn-up of cost against the budget target with a forecast fan to the deadline, a target-vs-actual matrix per employee, health checks and a full tracker. Timeminator's most powerful view &mdash; click any shot to open it full size.</p>
+            </figcaption>
           </figure>
-          <figure class="showcase-item">
-            <div class="showcase-text">
-              <p class="showcase-eyebrow">05 — Company cockpit</p>
-              <h3>The whole business on one screen</h3>
-              <p>Quotes won, invoiced, paid and outstanding, cost and bottom-line result — plus per-project P&amp;L and actual-vs-planned by week. The commercial picture at a glance.</p>
-            </div>
-            <div class="showcase-figure">
-              <a href="assets/screenshots/pro-company-cockpit.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-company-cockpit.png" alt="Company cockpit: quotes, invoiced, paid, receivables, cost and result with per-project P&L" loading="lazy" width="2960" height="4312"></a>
-            </div>
-          </figure>
-          <figure class="showcase-item">
-            <div class="showcase-text">
-              <p class="showcase-eyebrow">06 — Calendar</p>
-              <h3>Plan and book your week at a glance</h3>
-              <p>A colour-coded weekly calendar with public-holiday, school-break and team layers, per-day totals and drag-to-create entries — turn an appointment into a booking in one click.</p>
-            </div>
-            <div class="showcase-figure">
-              <a href="assets/screenshots/pro-calendar.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-calendar.png" alt="Multi-layer weekly calendar with colour-coded time blocks, public-holiday and school-break layers and daily totals" loading="lazy" width="2960" height="2088"></a>
-            </div>
-          </figure>
-          <figure class="showcase-item">
-            <div class="showcase-text">
-              <p class="showcase-eyebrow">07 — Statistics</p>
-              <h3>Analyze hours any way you need</h3>
-              <p>Hours by project as a donut, a trend over time, and flexible grouping by project, client or track over any date range.</p>
-            </div>
-            <div class="showcase-figure">
-              <a href="assets/screenshots/pro-statistics.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-statistics.png" alt="Statistics page with a project distribution donut, an over-time bar chart and a track comparison" loading="lazy" width="2960" height="2874"></a>
-            </div>
-          </figure>
-          <figure class="showcase-item">
-            <div class="showcase-text">
-              <p class="showcase-eyebrow">08 — Receivables</p>
-              <h3>Stay on top of what's owed</h3>
-              <p>Outstanding invoices grouped by aging bucket, one-click reminders on overdue items, and a cash-in forecast of what's landing when.</p>
-            </div>
-            <div class="showcase-figure">
-              <a href="assets/screenshots/pro-receivables.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-receivables.png" alt="Receivables overview: outstanding invoices by aging bucket with reminders and a cash-in forecast" loading="lazy" width="2960" height="1550"></a>
-            </div>
-          </figure>
-          <figure class="showcase-item">
-            <div class="showcase-text">
-              <p class="showcase-eyebrow">09 — Cash-in forecast</p>
-              <h3>See what's landing, and when</h3>
-              <p>Projected incoming payments from open invoices by week — an optimistic (on-time) and a realistic (with-delay) view — so cash position is readable at a glance.</p>
-            </div>
-            <div class="showcase-figure">
-              <a href="assets/screenshots/pro-cashflow.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-cashflow.png" alt="Cash-in forecast: projected incoming payments by week, optimistic vs realistic" loading="lazy" width="2960" height="1716"></a>
-            </div>
-          </figure>
+          <div class="pro-shots-grid">
+            <figure class="gcard">
+              <a class="gcard-shot" href="assets/screenshots/pro-calendar.png" data-full="assets/screenshots/pro-calendar.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-calendar.png" alt="Multi-layer weekly calendar with colour-coded time blocks, public-holiday and school-break layers and daily totals" loading="lazy"></a>
+              <figcaption class="gcard-body">
+                <p class="gcard-eyebrow">Calendar</p>
+                <h3>Plan and book your week</h3>
+                <p>Colour-coded week with public-holiday, school-break and team layers, per-day totals and drag-to-create entries.</p>
+              </figcaption>
+            </figure>
+            <figure class="gcard">
+              <a class="gcard-shot" href="assets/screenshots/pro-employee-cockpit.png" data-full="assets/screenshots/pro-employee-cockpit.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-employee-cockpit.png" alt="Employee cockpit: weekly working-time distribution on the target line, plus overtime, vacation and utilisation" loading="lazy"></a>
+              <figcaption class="gcard-body">
+                <p class="gcard-eyebrow">Employee cockpit</p>
+                <h3>Where every week's hours go</h3>
+                <p>A stacked weekly breakdown sitting on each person's target line, with overtime, vacation and utilisation.</p>
+              </figcaption>
+            </figure>
+            <figure class="gcard">
+              <a class="gcard-shot" href="assets/screenshots/pro-project-cockpit.png" data-full="assets/screenshots/pro-project-cockpit.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-project-cockpit.png" alt="Project cockpit: every project with booked-vs-budget, progress and health flags" loading="lazy"></a>
+              <figcaption class="gcard-body">
+                <p class="gcard-eyebrow">Project portfolio</p>
+                <h3>Every project at a glance</h3>
+                <p>Booked vs budget, progress, deadlines and red/amber/green health flags across all projects on one screen.</p>
+              </figcaption>
+            </figure>
+            <figure class="gcard">
+              <a class="gcard-shot" href="assets/screenshots/pro-company-cockpit.png" data-full="assets/screenshots/pro-company-cockpit.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-company-cockpit.png" alt="Company cockpit: quotes, invoiced, paid, receivables, cost and result with per-project P&L" loading="lazy"></a>
+              <figcaption class="gcard-body">
+                <p class="gcard-eyebrow">Company cockpit</p>
+                <h3>The whole business on one screen</h3>
+                <p>Quotes, invoiced, paid and outstanding, cost and bottom-line result, plus per-project P&amp;L by week.</p>
+              </figcaption>
+            </figure>
+            <figure class="gcard">
+              <a class="gcard-shot" href="assets/screenshots/pro-statistics.png" data-full="assets/screenshots/pro-statistics.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-statistics.png" alt="Statistics page with a project distribution donut, an over-time bar chart and a track comparison" loading="lazy"></a>
+              <figcaption class="gcard-body">
+                <p class="gcard-eyebrow">Statistics</p>
+                <h3>Analyze hours any way you need</h3>
+                <p>Hours by project as a donut, a trend over time, and flexible grouping by project, client or track over any range.</p>
+              </figcaption>
+            </figure>
+            <figure class="gcard">
+              <a class="gcard-shot" href="assets/screenshots/pro-dashboard.png" data-full="assets/screenshots/pro-dashboard.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-dashboard.png" alt="Dashboard: live timer, today/week/month hour totals, a mood and flow check-in and recent entries" loading="lazy"></a>
+              <figcaption class="gcard-body">
+                <p class="gcard-eyebrow">Dashboard</p>
+                <h3>Start the day in one place</h3>
+                <p>A live timer, day / week / month totals, a quick mood &amp; flow check-in and your most recent entries.</p>
+              </figcaption>
+            </figure>
+            <figure class="gcard">
+              <a class="gcard-shot" href="assets/screenshots/pro-receivables.png" data-full="assets/screenshots/pro-receivables.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-receivables.png" alt="Receivables overview: outstanding invoices by aging bucket with reminders and a cash-in forecast" loading="lazy"></a>
+              <figcaption class="gcard-body">
+                <p class="gcard-eyebrow">Receivables</p>
+                <h3>Stay on top of what's owed</h3>
+                <p>Outstanding invoices by aging bucket, one-click reminders on overdue items, and a cash-in forecast.</p>
+              </figcaption>
+            </figure>
+            <figure class="gcard">
+              <a class="gcard-shot" href="assets/screenshots/pro-cashflow.png" data-full="assets/screenshots/pro-cashflow.png" target="_blank" rel="noopener"><img src="assets/screenshots/pro-cashflow.png" alt="Cash-in forecast: projected incoming payments by week, optimistic vs realistic" loading="lazy"></a>
+              <figcaption class="gcard-body">
+                <p class="gcard-eyebrow">Cash-in forecast</p>
+                <h3>See what's landing, and when</h3>
+                <p>Projected incoming payments by week &mdash; optimistic (on-time) vs realistic (with-delay).</p>
+              </figcaption>
+            </figure>
+          </div>
         </div>
+        <div class="lightbox" id="lightbox" aria-hidden="true">
+          <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
+          <img src="" alt="">
+        </div>
+        <script>
+          (function () {
+            var lb = document.getElementById('lightbox');
+            if (!lb) return;
+            var img = lb.querySelector('img');
+            function openLb(src, alt) { img.src = src; img.alt = alt || ''; lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+            function closeLb() { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); img.src = ''; document.body.style.overflow = ''; }
+            document.querySelectorAll('.gcard-shot').forEach(function (a) {
+              a.addEventListener('click', function (e) {
+                var full = a.getAttribute('data-full') || a.getAttribute('href');
+                if (!full) return;
+                e.preventDefault();
+                var im = a.querySelector('img');
+                openLb(full, im ? im.alt : '');
+              });
+            });
+            lb.addEventListener('click', closeLb);
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+          })();
+        </script>
       </div>
     </section>
 
