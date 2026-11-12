@@ -300,6 +300,53 @@
       }
     }
 
+    /* "Now available" release pill (dark intro section) */
+    .release-pill {
+      display: inline-flex; align-items: center; gap: 9px;
+      margin: 0 0 18px; padding: 7px 16px; border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #bae6fd; font-size: 13px; font-weight: 600; letter-spacing: 0.01em;
+    }
+    .release-pill .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #34d399; box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.22);
+    }
+
+    /* Featured Docker quick-start card (download section) */
+    .docker-card {
+      margin: 0 0 24px; padding: 30px 32px; border-radius: 12px;
+      background: linear-gradient(135deg, #0b2a4a 0%, #0d1726 100%);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      display: grid; grid-template-columns: 1.05fr 1fr; gap: 30px; align-items: center;
+    }
+    .docker-card h3 {
+      color: #ffffff; font-size: 22px; margin: 0 0 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .docker-card > div > p { color: rgba(226, 240, 255, 0.82); margin: 0 0 16px; line-height: 1.55; }
+    .docker-card strong { color: #e6f6ff; }
+    .docker-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+    .docker-chip {
+      font-size: 12.5px; font-weight: 600; padding: 5px 11px; border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: #bae6fd;
+    }
+    .docker-run {
+      background: #060d16; border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 10px; padding: 18px 20px;
+    }
+    .docker-run .cmd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px; color: #d1fae5; line-height: 1.65; margin: 0;
+      white-space: pre-wrap; word-break: break-word;
+    }
+    .docker-run .prompt { color: #475569; user-select: none; }
+    .docker-run .step { color: rgba(226, 232, 240, 0.62); font-size: 12.5px; margin: 14px 0 0; }
+    .docker-run .step strong { color: #cbd5e1; }
+    @media (max-width: 820px) {
+      .docker-card { grid-template-columns: 1fr; gap: 22px; padding: 24px; }
+    }
+
     .card {
       background: linear-gradient(155deg, #ffffff 0%, #eaeef3 100%);
       border: 1px solid var(--color-divider);
@@ -1193,6 +1240,7 @@
   <main>
     <section class="dark" style="padding-top:clamp(48px,7vw,80px);padding-bottom:clamp(40px,6vw,56px)">
       <div class="container" style="text-align:center">
+        <span class="release-pill"><span class="dot"></span>Community Edition v1.0 &mdash; now available</span>
         <h2 style="margin-bottom:16px">Download &amp; Install Timeminator</h2>
         <p style="max-width:640px;margin:0 auto;color:rgba(255,255,255,0.8)">Everything you need to self-host Timeminator: system requirements, the latest release, and a step-by-step setup guide.</p>
       </div>
@@ -1434,11 +1482,31 @@
     <section class="light" id="download">
       <div class="container">
         <h2>Download</h2>
+
+        <div class="docker-card">
+          <div>
+            <h3>🐳 Run with Docker</h3>
+            <p>Spin up the whole app with a single command &mdash; <strong>SQLite is built in, so there's no database server to set up</strong>. The same image runs on Docker Desktop, any cloud host, or Kubernetes, which makes it the quickest way to give Timeminator a try.</p>
+            <div class="docker-badges">
+              <span class="docker-chip">Multi-arch &middot; amd64 + arm64</span>
+              <span class="docker-chip">SQLite built in</span>
+              <span class="docker-chip">No separate DB server</span>
+            </div>
+          </div>
+          <div class="docker-run">
+            <p class="cmd"><span class="prompt">$ </span>docker run -d -p 8080:80 \
+  -v tm_data:/var/www/html/data \
+  freshnfunky/timeminator-community</p>
+            <p class="step">Then open <strong>http://localhost:8080</strong> and finish the web installer. The <code>tm_data</code> volume keeps your database and uploads across restarts and updates.</p>
+            <a class="cta-button" style="margin-top:16px" href="https://hub.docker.com/r/freshnfunky/timeminator-community" target="_blank" rel="noopener">View on Docker Hub</a>
+          </div>
+        </div>
+
         <div class="grid">
           <div class="card">
             <span class="icon">📦</span>
             <h3>Latest Release</h3>
-            <p>Grab the current stable build as a ready-to-deploy archive from GitHub Releases.</p>
+            <p>Now at <strong>v1.0</strong> &mdash; the first stable release. Grab it as a ready-to-deploy archive from GitHub Releases.</p>
             <a class="cta-button" style="margin-top:16px" href="https://github.com/freshNfunky/Timeminator-Community/releases/latest" target="_blank">Download Release</a>
           </div>
           <div class="card">
