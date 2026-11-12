@@ -1,0 +1,42 @@
+[
+  {
+    "id": "46IqwSSe7pU",
+    "title": "TIMEMINATOR - Tutorial: Projektcockpit Tracker 🎯",
+    "published": "2026-11-10T15:48:15+00:00",
+    "blurb": "Dieses Video beschreibt, wie man Projektfortschritte auf ein Projekt bucht.",
+    "lang": "de",
+    "thumb": "assets/tutorials/46IqwSSe7pU.jpg"
+  },
+  {
+    "id": "NLlQKltNg8w",
+    "title": "TIMEMINATOR - Tutorial: Projektcockpit 👨‍✈️",
+    "published": "2026-11-10T15:18:37+00:00",
+    "blurb": "Hier erkläre ich, wie man Projekte im Projekt-Cockpit von TIMEMINATOR verwaltet.",
+    "lang": "de",
+    "thumb": "assets/tutorials/NLlQKltNg8w.jpg"
+  },
+  {
+    "id": "U2dBsh6UBQA",
+    "title": "Time booking with TIMEMINATOR",
+    "published": "2026-11-09T23:27:05+00:00",
+    "blurb": "This video demonstrates how you can book times in timeminator and account them to certain project budgets",
+    "lang": "en",
+    "thumb": "assets/tutorials/U2dBsh6UBQA.jpg"
+  },
+  {
+    "id": "mA6mkshuVaw",
+    "title": "Zeitbuchung mit TIMEMINATOR",
+    "published": "2026-11-09T23:19:32+00:00",
+    "blurb": "Dieses Video zeigt, wie Sie in TIMEMINATOR Zeiten buchen und diese bestimmten Projektbudgets zuordnen können",
+    "lang": "de",
+    "thumb": "assets/tutorials/mA6mkshuVaw.jpg"
+  },
+  {
+    "id": "amFHc-yJsDc",
+    "title": "TIMEMINATOR - a ressource booking and accounting tool for SMB (Small and Medium Business)",
+    "published": "2026-11-08T23:12:53+00:00",
+    "blurb": "hasta la vista timesheets. with this self hosted application you can say bye bye to time sheets. because this tool administers all the resources in your company. from ressource…",
+    "lang": "en",
+    "thumb": "assets/tutorials/amFHc-yJsDc.jpg"
+  }
+]

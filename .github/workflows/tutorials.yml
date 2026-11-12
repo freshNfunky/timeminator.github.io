@@ -1,0 +1,42 @@
+name: Tutorials
+
+# Keeps the Tutorials page (tutorials.html) in sync with the YouTube channel.
+# Reads the channel's public Atom feed, rebuilds data/tutorials.json and
+# self-hosts each video thumbnail under assets/tutorials/, then commits any
+# change. No API key is needed — the feed is public. Run it on demand from the
+# Actions tab (workflow_dispatch) right after publishing a video, or let the
+# daily schedule pick it up. Hand edits to data/tutorials.json and
+# data/tutorials.overrides.json are preserved (overrides win over the feed).
+
+on:
+  schedule:
+    - cron: "23 5 * * *" # daily 05:23 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write # commit the refreshed list + thumbnails
+
+concurrency:
+  group: tutorials
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rebuild tutorials list
+        run: python3 .github/scripts/build_tutorials.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/tutorials.json assets/tutorials
+          if git diff --cached --quiet; then
+            echo "No tutorial changes."
+          else
+            git commit -m "chore(tutorials): sync from YouTube ($(date -u +%Y-%m-%d))"
+            git push
+          fi
